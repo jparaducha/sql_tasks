@@ -40,18 +40,12 @@ CREATE TABLE flights(
 `price` DOUBLE,
 departure_time datetime NOT NULL,
 arrival_time DATETIME NOT NULL,
-#departure_airport INT NOT NULL,
-#arrival_airport INT NOT NULL,
 airlineId INT NOT NULL,
 pilotId INT,
 planeId INT,
-#passengerId INT,
-#FOREIGN KEY (departure_airport) REFERENCES departure_airports(departure_id) ON UPDATE CASCADE ON DELETE NO ACTION,
-#FOREIGN KEY (arrival_airport) REFERENCES arrival_airports(arrival_id) ON UPDATE CASCADE ON DELETE NO ACTION,
 FOREIGN KEY (airlineId) REFERENCES airline(airline_id) ON UPDATE CASCADE ON DELETE NO ACTION,
 FOREIGN KEY (pilotId) REFERENCES pilots(id_pilot) ON UPDATE CASCADE ON DELETE NO ACTION,
 FOREIGN KEY (planeId) REFERENCES planes(plane_id) ON UPDATE CASCADE ON DELETE NO ACTION
-#FOREIGN KEY (passengerId) REFERENCES passengers(passenger_id) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 DROP TABLE IF EXISTS airport_flights;
@@ -60,7 +54,6 @@ CREATE TABLE airport_flights(
 `flightId` INT NOT NULL,
 `departure_airportId` INT NOT NULL,
 `arrival_airportId` INT NOT NULL,
- #CONSTRAINT `departure_id` PRIMARY KEY (`flightId`, `airportId`),
  FOREIGN KEY (flightId) REFERENCES flights(flight_id) ON UPDATE CASCADE ON DELETE NO ACTION,
  FOREIGN KEY (departure_airportId) REFERENCES airports(airport_id) ON UPDATE CASCADE ON DELETE NO ACTION,
  FOREIGN KEY (arrival_airportId) REFERENCES airports(airport_id) ON UPDATE CASCADE ON DELETE NO ACTION
