@@ -40,7 +40,8 @@ INNER JOIN countries con1 ON con1.country_id = c1.countryId
 INNER JOIN countries con2 ON con2.country_id = c2.countryId
 INNER JOIN airlines ON airlines.airline_id = flights.airlineId
 INNER JOIN tickets ON flights.flight_id = tickets.flightId
-INNER JOIN passengers ON tickets.passengerId = passengers.passenger_id;
+INNER JOIN passengers ON tickets.passengerId = passengers.passenger_id
+ORDER BY flights.flight_id;
 
 SELECT flights.flight_duration, a1.airport_name AS `Departure airport` , a2.airport_name AS `Arrival airport`
  FROM flights
