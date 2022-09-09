@@ -1,5 +1,5 @@
 USE sql_task;
-#SET SQL_SAFE_UPDATES= 0;
+SET SQL_SAFE_UPDATES= 0;
 
 INSERT INTO countries(country_name)
 VALUES("Argentina"), ("United Kingdom"), ("Saudi Arabia"),

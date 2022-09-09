@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `sql_task`;
 USE sql_task;
-#SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS airports;
 CREATE TABLE airports(
 `airport_id` INT auto_increment PRIMARY KEY NOT NULL,
