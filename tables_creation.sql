@@ -1,4 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `sql_task`;
+DROP DATABASE IF EXISTS `sql_task`;
+CREATE DATABASE `sql_task`;
 USE sql_task;
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS airports;
@@ -53,25 +54,18 @@ FOREIGN KEY (planeId) REFERENCES planes(plane_id) ON UPDATE CASCADE ON DELETE NO
 #FOREIGN KEY (passengerId) REFERENCES passengers(passenger_id) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
-DROP TABLE IF EXISTS departure_airports;
-CREATE TABLE `departure_airports`(
-`departure_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+DROP TABLE IF EXISTS airport_flights;
+CREATE TABLE airport_flights(
+`airport_flight_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 `flightId` INT NOT NULL,
-`airportId` INT NOT NULL,
+`departure_airportId` INT NOT NULL,
+`arrival_airportId` INT NOT NULL,
  #CONSTRAINT `departure_id` PRIMARY KEY (`flightId`, `airportId`),
  FOREIGN KEY (flightId) REFERENCES flights(flight_id) ON UPDATE CASCADE ON DELETE NO ACTION,
- FOREIGN KEY (airportId) REFERENCES airports(airport_id) ON UPDATE CASCADE ON DELETE NO ACTION
+ FOREIGN KEY (departure_airportId) REFERENCES airports(airport_id) ON UPDATE CASCADE ON DELETE NO ACTION,
+ FOREIGN KEY (arrival_airportId) REFERENCES airports(airport_id) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
-DROP TABLE IF EXISTS arrival_airports;
-CREATE TABLE `arrival_airports`(
-`arrival_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-`flightId` INT NOT NULL,
-`airportId` INT NOT NULL,
- #CONSTRAINT `arrival_id` PRIMARY KEY (`flightId`, `airportId`),
- FOREIGN KEY (flightId) REFERENCES flights(flight_id) ON UPDATE CASCADE ON DELETE NO ACTION,
- FOREIGN KEY (airportId) REFERENCES airports(airport_id) ON UPDATE CASCADE ON DELETE NO ACTION
-);
 
 DROP TABLE IF EXISTS plane_manufacturers;
 CREATE TABLE plane_manufacturers(

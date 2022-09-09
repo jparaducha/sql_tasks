@@ -15,7 +15,8 @@ SELECT pilots.pilot_name AS `Name`, pilots.pilot_age AS Age, pilot_licenses.issu
  INNER JOIN pilot_licenses ON pilot_licenses.license_id = pilots.licenseId;
  
 
-SELECT passengers.passenger_name AS `Passenger`, a1.airport_name AS `From`,c1.city_name AS `Departure city`,  con1.country_name AS `Departure country`,
+SELECT passengers.passenger_name AS `Passenger`, a1.airport_name AS `From`,c1.city_name AS `Departure city`,
+  con1.country_name AS `Departure country`,
 flights.departure_time AS `Departure time and date`,
  a2.airport_name AS `To`, c2.city_name AS `Destination city`, con2.country_name AS `Destination country`,
  flights.arrival_time AS `Arrival time and date`,
@@ -27,10 +28,10 @@ FROM planes
 INNER JOIN plane_models ON planes.modelId = plane_models.model_id
 INNER JOIN plane_manufacturers ON plane_models.manufacturer = plane_manufacturers.manufacturer_id
 INNER JOIN flights ON flights.planeId = planes.plane_id
-INNER JOIN departure_airports ON departure_airports.flightId = flights.flight_id
-INNER JOIN airports a1 ON a1.airport_id = departure_airports.airportId
-INNER JOIN arrival_airports ON arrival_airports.flightId = flights.flight_id
-INNER JOIN airports a2 ON a2.airport_id = arrival_airports.airportId
+INNER JOIN airport_flights af1 ON af1.flightId = flights.flight_id
+INNER JOIN airports a1 ON a1.airport_id = af1.departure_airportId
+INNER JOIN airport_flights af2 ON af2.flightId = flights.flight_id
+INNER JOIN airports a2 ON a2.airport_id = af2.arrival_airportId
 INNER JOIN pilots ON flights.pilotId = pilots.id_pilot
 INNER JOIN pilot_licenses ON pilots.id_pilot = pilot_licenses.pilotId
 INNER JOIN cities c1 ON c1.city_id = a1.cityId
@@ -41,12 +42,17 @@ INNER JOIN airlines ON airlines.airline_id = flights.airlineId
 INNER JOIN tickets ON flights.flight_id = tickets.flightId
 INNER JOIN passengers ON tickets.passengerId = passengers.passenger_id;
 
-SELECT flights.flight_duration, a1.airport_name AS `Departure airport`, a2.airport_name AS `Arrival airport`
+SELECT flights.flight_duration, a1.airport_name AS `Departure airport` , a2.airport_name AS `Arrival airport`
  FROM flights
- INNER JOIN departure_airports ON departure_airports.flightId = flights.flight_id 
- INNER JOIN airports a1 ON departure_airports.airportId = a1.airport_id
- INNER JOIN arrival_airports ON arrival_airports.flightId = flights.flight_id 
- INNER JOIN airports a2 ON arrival_airports.airportId = a2.airport_id;
+ LEFT JOIN airport_flights af1 ON flights.departure_airport = af1.departure_airportId
+ LEFT JOIN airports a1 ON af1.departure_airportId = a1.airport_id
+ LEFT JOIN airport_flights af2 ON flights.arrival_airport = af2.arrival_airportId
+ LEFT JOIN airports a2 ON af2.arrival_airportId = a2.airport_id;
+ 
+ SELECT * FROM flights;
+ 
+ 
+ SELECT * FROM airport_flights;
 
 SELECT AVG(pilot_age) `Average pilots age`
  FROM pilots;

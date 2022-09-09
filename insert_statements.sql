@@ -124,19 +124,16 @@ VALUES("Howard Hughes",43 ,1), ("Eugène Roland Garros",32 ,2), ("Orville Wright
  (7,7,1, 8, 11, 3692, "2022-11-04 15:15:00", "2022-11-05 08:15:00", "15:00:00"),
  (8,8,7, 10, 12, 864, "2022-11-04 08:00:00", "2022-11-04 11:05:00", "03:05:00");
  
- INSERT INTO arrival_airports(flightId, airportId)
- VALUES(1,27),(2,2),(3,27),(4,18),(5,15),(6,31),(7,9),(8,5);
  
- 
- INSERT INTO departure_airports(flightId, airportId)
- VALUES(1,1),
- (2,27),
- (3,1),
- (4,17),
- (5,17),
- (6,21),
- (7,7),
- (8,24);
+ INSERT INTO airport_flights(flightId, departure_airportId, arrival_airportId)
+ VALUES(1,1,27),
+ (2,27,2),
+ (3,1,27),
+ (4,17,18),
+ (5,17,15),
+ (6,21,31),
+ (7,7,9),
+ (8,24,5);
  
  
  INSERT INTO tickets(passengerId, flightId)
