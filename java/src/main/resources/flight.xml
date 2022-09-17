@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flight>
+    <flight_id>1</flight_id>
+    <flight_duration>12:15:00</flight_duration>
+    <departure_time>2022-11-03T23:55:00</departure_time>
+    <arrival_time>2022-11-04T16:10:00</arrival_time>
+    <airlineId>4</airlineId>
+    <pilotId>5</pilotId>
+    <planeId>1</planeId>
+</flight>

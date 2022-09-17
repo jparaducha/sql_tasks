@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airport>
+    <airport_id>27</airport_id>
+    <airport_name>Madrid-Barajas</airport_name>
+    <IATA_code>MAD</IATA_code>
+    <cityId>23</cityId>
+</airport>

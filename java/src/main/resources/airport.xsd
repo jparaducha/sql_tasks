@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="airports">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="airport" minOccurs="0" maxOccurs="200">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="airport_id" type="xs:int"/>
+                            <xs:element name="airport_name" type="xs:string"/>
+                            <xs:element name="IATA_code" type="xs:string"/>
+                            <xs:element name="cityId" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
