@@ -2,6 +2,7 @@ package jdbc.DAO.mysql;
 
 import jdbc.Airport;
 import jdbc.City;
+import jdbc.Country;
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +18,7 @@ public class AirportDAO implements IBaseDAO<Airport> {
 
     private final String INSERT_AIRPORT = "INSERT INTO airports(airport_name, IATA_code, cityId) " + "VALUES(?, ?, ?)";
     private final String GET_AIRPORT_BY_ID = "SELECT * FROM airports LEFT JOIN cities ON airports.cityId = cities.city_id WHERE airport_id = ? ORDER BY airport_id";
-    private final String GET_ALL_AIRPORTS = "SELECT * FROM airports LEFT JOIN cities ON airports.cityId = cities.city_id ORDER BY airport_id";
+    private final String GET_ALL_AIRPORTS = "SELECT * FROM airports LEFT JOIN cities ON airports.cityId = cities.city_id JOIN countries ON cities.countryId = countries.country_id ORDER BY airport_id";
     private final String DELETE_BY_ID = "DELETE FROM airports WHERE airport_id = ?";
     private final String UPDATE_AIRPORT = "UPDATE airports SET airport_name =  ?, IATA_code = ?, cityId = ? WHERE airport_id = ?";
     private final String DELETE_ALL = "DELETE FROM airports";
@@ -39,8 +40,8 @@ public class AirportDAO implements IBaseDAO<Airport> {
 
             result.next();
 
-
-            City city = new City(result.getInt("city_id"), result.getString("city_name"));
+            Country country = new Country(result.getString("country_name"), result.getInt("countryId"));
+            City city = new City(result.getInt("city_id"), result.getString("city_name"), country);
             Airport airport = new Airport(result.getInt("airport_id"), result.getString("airport_name"), result.getString("IATA_code"), city);
 
             return airport;
@@ -70,7 +71,8 @@ public class AirportDAO implements IBaseDAO<Airport> {
             ArrayList<Airport> airports = new ArrayList<>();
 
             while (result.next()) {
-                City city = new City(result.getInt("city_id"), result.getString("city_name"));
+                Country country = new Country(result.getString("country_name"), result.getInt("countryId"));
+                City city = new City(result.getInt("city_id"), result.getString("city_name"), country);
                 Airport airport = new Airport(result.getInt("airport_id"), result.getString("airport_name"), result.getString("IATA_code"), city);
 
                 airports.add(airport);
