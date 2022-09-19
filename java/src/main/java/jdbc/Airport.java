@@ -19,7 +19,7 @@ public class Airport {
 
     @Override
     public String toString() {
-        return "Airport{" + "airport_id=" + airportId + ", airport_name='" + airportName + '\'' + ", IATA_code='" + iataCode + '\'' + ", city=" + city + '}';
+        return "Airport{" + "airportId=" + airportId + ", airportName='" + airportName + '\'' + ", iataCode='" + iataCode + '\'' + ", city=" + city + '}';
     }
 
     public int getAirportId() {
