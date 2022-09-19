@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <airports>
     <airport>
-        <airport_id>1</airport_id>
-        <airport_name>Ministro Pistarini International</airport_name>
-        <IATA_code>EZE</IATA_code>
+        <airportId>1</airportId>
+        <airportName>Ministro Pistarini International</airportName>
+        <iataCode>EZE</iataCode>
         <cityId>1</cityId>
     </airport>
     <airport>
-        <airport_id>27</airport_id>
-        <airport_name>Madrid-Barajas</airport_name>
-        <IATA_code>MAD</IATA_code>
+        <airportId>27</airportId>
+        <airportName>Madrid-Barajas</airportName>
+        <iataCode>MAD</iataCode>
         <cityId>23</cityId>
     </airport>
     <airport>
-        <airport_id>17</airport_id>
-        <airport_name>John F. Kennedy International</airport_name>
-        <IATA_code>JFK</IATA_code>
+        <airportId>17</airportId>
+        <airportName>John F. Kennedy International</airportName>
+        <iataCode>JFK</iataCode>
         <cityId>15</cityId>
     </airport>
     <airport>
-        <airport_id>21</airport_id>
-        <airport_name>Aeroparque Jorge Newbery</airport_name>
-        <IATA_code>AEP</IATA_code>
+        <airportId>21</airportId>
+        <airportName>Aeroparque Jorge Newbery</airportName>
+        <iataCode>AEP</iataCode>
         <cityId>18</cityId>
     </airport>
     <airport>
-        <airport_id>7</airport_id>
-        <airport_name>Amsterdam Airport Schiphol</airport_name>
-        <IATA_code>AMS</IATA_code>
+        <airportId>7</airportId>
+        <airportName>Amsterdam Airport Schiphol</airportName>
+        <iataCode>AMS</iataCode>
         <cityId>7</cityId>
     </airport>
     <airport>
-        <airport_id>24</airport_id>
-        <airport_name>Guangzhou Baiyun International</airport_name>
-        <IATA_code>CAN</IATA_code>
+        <airportId>24</airportId>
+        <airportName>Guangzhou Baiyun International</airportName>
+        <iataCode>CAN</iataCode>
         <cityId>21</cityId>
     </airport>
 </airports>
