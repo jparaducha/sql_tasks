@@ -1,5 +1,6 @@
 package xml;
 
+import jdbc.Airport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -9,50 +10,54 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 
 public class DOMParser {
     private static final Logger LOGGER = LogManager.getLogger(DOMParser.class);
 
-    public static void main(String[] args) throws ParserConfigurationException, IOException {
+    public static void main(String[] args) {
 
-        File xmlFile = new File("src\\main\\java\\xml\\airports.xml");
+        File xmlFile = new File("java\\src\\main\\resources\\airports.xml");
 
         Element parsedFile = parseElement(xmlFile);
 
-        NodeList nodeList = parsedFile.getElementsByTagName("airport");
-       /* for (int i = 0; i < nodeList.getLength(); i++) {
-
-            Node node = nodeList.item(i);
-
-            System.out.println(" - " + node.getTextContent());
-        }
-*/
         NodeList childNodes = parsedFile.getChildNodes();
+        ArrayList<Airport> airports = new ArrayList<>();
 
         for (int i = 0; i < childNodes.getLength(); i++) {
-            Node childNode = childNodes.item(i);
+            Airport airport = new Airport();
+            Node airportNode = childNodes.item(i);
 
-            if (childNode.getNodeType() == Node.ELEMENT_NODE) {
-                LOGGER.info("-------------------------------------");
-                LOGGER.info("nodeName : " + childNode.getNodeName());
-            } else {
+            if (airportNode.getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
-            NodeList childNodes2 = childNode.getChildNodes();
+            NodeList airportElementsList = airportNode.getChildNodes();
 
-            for (int j = 0; j < childNodes2.getLength(); j++) {
-                Node childNode2 = childNodes2.item(j);
+            for (int j = 0; j < airportElementsList.getLength(); j++) {
+                Node airportElementNode = airportElementsList.item(j);
 
-                if (childNode2.getNodeType() == Node.ELEMENT_NODE) {
+                if (airportElementNode.getNodeType() == Node.ELEMENT_NODE) {
 
-                    LOGGER.info(childNode2.getNodeName() + " === " + childNode2.getTextContent());
+                    switch (airportElementNode.getNodeName()) {
+                        case "airportId":
+                            airport.setAirportId(Integer.parseInt(airportElementNode.getTextContent()));
+                            break;
+                        case "airportName":
+                            airport.setAirportName(airportElementNode.getTextContent());
+                            break;
+                        case "iataCode":
+                            airport.setIataCode(airportElementNode.getTextContent());
+                        default:
+                            break;
+                    }
                 }
             }
+            airports.add(airport);
+        }
 
-            //LOGGER.info(childNode.getTextContent());
+        for (Airport airport : airports) {
+            LOGGER.info(airport);
         }
     }
 
