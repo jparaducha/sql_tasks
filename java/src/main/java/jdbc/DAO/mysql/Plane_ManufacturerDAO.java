@@ -2,7 +2,7 @@ package jdbc.DAO.mysql;
 
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
-import jdbc.Plane_Manufacturer;
+import jdbc.PlaneManufacturer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Plane_ManufacturerDAO implements IBaseDAO<Plane_Manufacturer> {
+public class Plane_ManufacturerDAO implements IBaseDAO<PlaneManufacturer> {
 
     private final String INSERT_MANUFACTURER = "INSERT INTO plane_manufacturers(manufacturer_name) " + "VALUES(?)";
     private final String GET_MANUFACTURER_BY_ID = "SELECT * FROM plane_manufacturers WHERE manufacturer_id = ?";
@@ -26,7 +26,7 @@ public class Plane_ManufacturerDAO implements IBaseDAO<Plane_Manufacturer> {
     }
 
     @Override
-    public Plane_Manufacturer getById(int id) throws SQLException {
+    public PlaneManufacturer getById(int id) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
@@ -37,7 +37,7 @@ public class Plane_ManufacturerDAO implements IBaseDAO<Plane_Manufacturer> {
             ResultSet result = preparedStatement.executeQuery();
 
             result.next();
-            Plane_Manufacturer manufacturer = new Plane_Manufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
+            PlaneManufacturer manufacturer = new PlaneManufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
 
             return manufacturer;
         } catch (SQLException e) {
@@ -54,7 +54,7 @@ public class Plane_ManufacturerDAO implements IBaseDAO<Plane_Manufacturer> {
     }
 
     @Override
-    public ArrayList<Plane_Manufacturer> getAll() throws SQLException {
+    public ArrayList<PlaneManufacturer> getAll() throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
@@ -63,11 +63,11 @@ public class Plane_ManufacturerDAO implements IBaseDAO<Plane_Manufacturer> {
 
             ResultSet result = preparedStatement.executeQuery();
 
-            ArrayList<Plane_Manufacturer> manufacturers = new ArrayList<>();
+            ArrayList<PlaneManufacturer> manufacturers = new ArrayList<>();
 
             while (result.next()) {
 
-                Plane_Manufacturer manufacturer = new Plane_Manufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
+                PlaneManufacturer manufacturer = new PlaneManufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
 
                 manufacturers.add(manufacturer);
             }
@@ -87,7 +87,7 @@ public class Plane_ManufacturerDAO implements IBaseDAO<Plane_Manufacturer> {
     }
 
     @Override
-    public void insertRow(Plane_Manufacturer object) throws SQLException {
+    public void insertRow(PlaneManufacturer object) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
@@ -131,7 +131,7 @@ public class Plane_ManufacturerDAO implements IBaseDAO<Plane_Manufacturer> {
     }
 
     @Override
-    public void updateRow(int id, Plane_Manufacturer object) throws SQLException {
+    public void updateRow(int id, PlaneManufacturer object) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {

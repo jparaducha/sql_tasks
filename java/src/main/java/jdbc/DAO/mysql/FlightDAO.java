@@ -41,10 +41,10 @@ public class FlightDAO implements IBaseDAO<Flight> {
 
             result.next();
 
-            Pilot_License license = new Pilot_License(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
+            PilotLicense license = new PilotLicense(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
             Pilot pilot = new Pilot(result.getInt("id_pilot"), result.getString("pilot_name"), result.getInt("pilot_age"), license);
 
-            Plane_Manufacturer manufacturer = new Plane_Manufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
+            PlaneManufacturer manufacturer = new PlaneManufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
             Plane plane = new Plane(result.getInt("plane_id"), result.getInt("year"), result.getString(result.findColumn("model_name")), manufacturer);
 
             Country country1 = new Country(result.getString("con1"), result.getInt("con1id"));
@@ -103,10 +103,10 @@ public class FlightDAO implements IBaseDAO<Flight> {
 
                 int currFlightId = result.getInt("flight_id");
 
-                Pilot_License license = new Pilot_License(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
+                PilotLicense license = new PilotLicense(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
                 Pilot pilot = new Pilot(result.getInt("id_pilot"), result.getString("pilot_name"), result.getInt("pilot_age"), license);
 
-                Plane_Manufacturer manufacturer = new Plane_Manufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
+                PlaneManufacturer manufacturer = new PlaneManufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
                 Plane plane = new Plane(result.getInt("plane_id"), result.getInt("year"), result.getString(result.findColumn("model_name")), manufacturer);
 
                 Country country1 = new Country(result.getString("con1"), result.getInt("con1id"));
@@ -155,13 +155,13 @@ public class FlightDAO implements IBaseDAO<Flight> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(INSERT_FLIGHT);
-            preparedStatement.setInt(1, object.getAirline().getAirline_id());
-            preparedStatement.setInt(2, object.getPilot().getPilot_id());
+            preparedStatement.setInt(1, object.getAirline().getAirlineId());
+            preparedStatement.setInt(2, object.getPilot().getPilotId());
             preparedStatement.setInt(3, object.getPlane().getPlaneId());
             preparedStatement.setDouble(4, object.getPrice());
-            preparedStatement.setString(5, object.getDeparture_time());
-            preparedStatement.setString(6, object.getArrival_time());
-            preparedStatement.setString(7, object.getFlight_duration());
+            preparedStatement.setString(5, object.getDepartureTime());
+            preparedStatement.setString(6, object.getArrivalTime());
+            preparedStatement.setString(7, object.getFlightDuration());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -208,13 +208,13 @@ public class FlightDAO implements IBaseDAO<Flight> {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(UPDATE_FLIGHT);
-            preparedStatement.setInt(1, object.getAirline().getAirline_id());
-            preparedStatement.setInt(2, object.getPilot().getPilot_id());
+            preparedStatement.setInt(1, object.getAirline().getAirlineId());
+            preparedStatement.setInt(2, object.getPilot().getPilotId());
             preparedStatement.setInt(3, object.getPlane().getPlaneId());
             preparedStatement.setDouble(4, object.getPrice());
-            preparedStatement.setString(5, object.getDeparture_time());
-            preparedStatement.setString(6, object.getArrival_time());
-            preparedStatement.setString(7, object.getFlight_duration());
+            preparedStatement.setString(5, object.getDepartureTime());
+            preparedStatement.setString(6, object.getArrivalTime());
+            preparedStatement.setString(7, object.getFlightDuration());
             preparedStatement.setInt(8, id);
 
             preparedStatement.executeUpdate();

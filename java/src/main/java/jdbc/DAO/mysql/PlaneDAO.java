@@ -3,7 +3,7 @@ package jdbc.DAO.mysql;
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IPlaneDAO;
 import jdbc.Plane;
-import jdbc.Plane_Manufacturer;
+import jdbc.PlaneManufacturer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,7 +39,7 @@ public class PlaneDAO implements IPlaneDAO {
             if (!plane.next()) {
                 return null;
             }
-            Plane_Manufacturer manufacturer = new Plane_Manufacturer(plane.getInt("manufacturer_id"), plane.getString("manufacturer_name"));
+            PlaneManufacturer manufacturer = new PlaneManufacturer(plane.getInt("manufacturer_id"), plane.getString("manufacturer_name"));
             Plane plane1 = new Plane(plane.getInt("plane_id"), plane.getInt("year"), plane.getString(plane.findColumn("model_name")), manufacturer);
 
             return plane1;
@@ -68,7 +68,7 @@ public class PlaneDAO implements IPlaneDAO {
             ResultSet planes = preparedStatement.executeQuery();
 
             while (planes.next()) {
-                Plane_Manufacturer manufacturer = new Plane_Manufacturer(planes.getInt("manufacturer_id"), planes.getString("manufacturer_name"));
+                PlaneManufacturer manufacturer = new PlaneManufacturer(planes.getInt("manufacturer_id"), planes.getString("manufacturer_name"));
                 planeList.add(new Plane(planes.getInt("plane_id"), planes.getInt("year"), planes.getString(planes.findColumn("model_name")), manufacturer));
             }
 

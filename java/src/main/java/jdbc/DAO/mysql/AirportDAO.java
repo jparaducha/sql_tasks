@@ -99,9 +99,9 @@ public class AirportDAO implements IBaseDAO<Airport> {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(INSERT_AIRPORT);
 
-            preparedStatement.setString(1, object.getAirport_name());
-            preparedStatement.setString(2, object.getIATA_code());
-            preparedStatement.setInt(3, object.getCity().getCity_id());
+            preparedStatement.setString(1, object.getAirportName());
+            preparedStatement.setString(2, object.getIataCode());
+            preparedStatement.setInt(3, object.getCity().getCityId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -147,9 +147,9 @@ public class AirportDAO implements IBaseDAO<Airport> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(UPDATE_AIRPORT);
-            preparedStatement.setString(1, object.getAirport_name());
-            preparedStatement.setString(2, object.getIATA_code());
-            preparedStatement.setInt(3, object.getCity().getCity_id());
+            preparedStatement.setString(1, object.getAirportName());
+            preparedStatement.setString(2, object.getIataCode());
+            preparedStatement.setInt(3, object.getCity().getCityId());
             preparedStatement.setInt(4, id);
 
             preparedStatement.executeUpdate();

@@ -1,17 +1,17 @@
 package jdbc;
 
-public class Pilot_License {
+public class PilotLicense {
 
     private int license_id;
     private String issued_on;
     private String expires;
     private int pilot_id;
 
-    public Pilot_License() {
+    public PilotLicense() {
 
     }
 
-    public Pilot_License(int id, String issued, String expires, int pilot_id) {
+    public PilotLicense(int id, String issued, String expires, int pilot_id) {
         this.license_id = id;
         this.issued_on = issued;
         this.expires = expires;

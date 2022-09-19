@@ -89,7 +89,7 @@ public class AirlineDAO implements IBaseDAO<Airline> {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(INSERT_AIRLINE);
-            preparedStatement.setString(1, object.getAirline_name());
+            preparedStatement.setString(1, object.getAirlineName());
             preparedStatement.setInt(2, object.getCountry().getCountryId());
 
             preparedStatement.executeUpdate();
@@ -128,7 +128,7 @@ public class AirlineDAO implements IBaseDAO<Airline> {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(UPDATE_AIRLINE);
-            preparedStatement.setString(1, object.getAirline_name());
+            preparedStatement.setString(1, object.getAirlineName());
             preparedStatement.setInt(2, object.getCountry().getCountryId());
             preparedStatement.setInt(3, id);
 

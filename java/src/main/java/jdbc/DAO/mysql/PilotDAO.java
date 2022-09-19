@@ -3,7 +3,7 @@ package jdbc.DAO.mysql;
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
 import jdbc.Pilot;
-import jdbc.Pilot_License;
+import jdbc.PilotLicense;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,7 +36,7 @@ public class PilotDAO implements IBaseDAO<Pilot> {
             ResultSet result = preparedStatement.executeQuery();
 
             result.next();
-            Pilot_License license = new Pilot_License(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
+            PilotLicense license = new PilotLicense(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
 
             Pilot pilot = new Pilot(result.getInt("id_pilot"), result.getString("pilot_name"), result.getInt("pilot_age"), license);
 
@@ -67,7 +67,7 @@ public class PilotDAO implements IBaseDAO<Pilot> {
 
             while (result.next()) {
 
-                Pilot_License license = new Pilot_License(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
+                PilotLicense license = new PilotLicense(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
 
                 Pilot pilot = new Pilot(result.getInt("id_pilot"), result.getString("pilot_name"), result.getInt("pilot_age"), license);
 
@@ -96,8 +96,8 @@ public class PilotDAO implements IBaseDAO<Pilot> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(INSERT_PILOT);
-            preparedStatement.setString(1, object.getPilot_name());
-            preparedStatement.setInt(2, object.getPilot_age());
+            preparedStatement.setString(1, object.getPilotName());
+            preparedStatement.setInt(2, object.getPilotAge());
             preparedStatement.setInt(3, object.getLicense().getLicense_id());
 
             preparedStatement.executeUpdate();
@@ -144,8 +144,8 @@ public class PilotDAO implements IBaseDAO<Pilot> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(UPDATE_PILOT);
-            preparedStatement.setString(1, object.getPilot_name());
-            preparedStatement.setInt(2, object.getPilot_age());
+            preparedStatement.setString(1, object.getPilotName());
+            preparedStatement.setInt(2, object.getPilotAge());
             preparedStatement.setInt(3, object.getLicense().getLicense_id());
             preparedStatement.setInt(4, id);
 

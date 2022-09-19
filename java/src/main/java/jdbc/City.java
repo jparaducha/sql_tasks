@@ -3,8 +3,8 @@ package jdbc;
 public class City {
 
     private int countryId;
-    private int city_id;
-    private String city_name;
+    private int cityId;
+    private String cityName;
     private Country country;
 
     public City() {
@@ -12,46 +12,46 @@ public class City {
     }
 
     public City(int id, String name) {
-        this.city_id = id;
-        this.city_name = name;
+        this.cityId = id;
+        this.cityName = name;
     }
 
     public City(int id, String name, Country countryId) {
-        this.city_id = id;
-        this.city_name = name;
+        this.cityId = id;
+        this.cityName = name;
         this.country = countryId;
     }
 
     public City(String name) {
-        this.city_name = name;
+        this.cityName = name;
     }
 
-    public City(int city_id, String city_name, int country_id) {
+    public City(int cityId, String cityName, int country_id) {
 
-        this.city_id = city_id;
-        this.city_name = city_name;
+        this.cityId = cityId;
+        this.cityName = cityName;
         this.countryId = country_id;
     }
 
-    public int getCity_id() {
-        return city_id;
+    public int getCityId() {
+        return cityId;
     }
 
-    public void setCity_id(int city_id) {
-        this.city_id = city_id;
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     @Override
     public String toString() {
-        return "City{" + "city_id=" + city_id + ", city_name='" + city_name + '\'' + ", country=" + country + '}';
+        return "City{" + "city_id=" + cityId + ", city_name='" + cityName + '\'' + ", country=" + country + '}';
     }
 
-    public String getCity_name() {
-        return city_name;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public Country getCountry() {

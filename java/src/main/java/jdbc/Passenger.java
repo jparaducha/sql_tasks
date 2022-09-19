@@ -2,43 +2,43 @@ package jdbc;
 
 public class Passenger {
 
-    private int passenger_id;
-    private String passenger_name;
-    private int passenger_contact_number;
+    private int passengerId;
+    private String passengerName;
+    private int passengerContactNumber;
 
-    public Passenger(int passenger_id, String passenger_name, int passenger_contact_number) {
-        this.passenger_id = passenger_id;
-        this.passenger_name = passenger_name;
-        this.passenger_contact_number = passenger_contact_number;
+    public Passenger(int passengerId, String passengerName, int passengerContactNumber) {
+        this.passengerId = passengerId;
+        this.passengerName = passengerName;
+        this.passengerContactNumber = passengerContactNumber;
     }
 
     public Passenger() {
 
     }
 
-    public Passenger(int passenger_id, String passenger_name) {
-        this.passenger_id = passenger_id;
-        this.passenger_name = passenger_name;
+    public Passenger(int passengerId, String passengerName) {
+        this.passengerId = passengerId;
+        this.passengerName = passengerName;
     }
 
     @Override
     public String toString() {
-        return "Passenger{" + "passenger_id=" + passenger_id + ", passenger_name='" + passenger_name + '\'' + ", passenger_contact_number=" + passenger_contact_number + '}';
+        return "Passenger{" + "passenger_id=" + passengerId + ", passenger_name='" + passengerName + '\'' + ", passenger_contact_number=" + passengerContactNumber + '}';
     }
 
-    public int getPassenger_id() {
-        return passenger_id;
+    public int getPassengerId() {
+        return passengerId;
     }
 
-    public void setPassenger_id(int passenger_id) {
-        this.passenger_id = passenger_id;
+    public void setPassengerId(int passengerId) {
+        this.passengerId = passengerId;
     }
 
-    public String getPassenger_name() {
-        return passenger_name;
+    public String getPassengerName() {
+        return passengerName;
     }
 
-    public void setPassenger_name(String passenger_name) {
-        this.passenger_name = passenger_name;
+    public void setPassengerName(String passengerName) {
+        this.passengerName = passengerName;
     }
 }

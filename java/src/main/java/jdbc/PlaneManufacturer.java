@@ -1,15 +1,15 @@
 package jdbc;
 
-public class Plane_Manufacturer {
+public class PlaneManufacturer {
 
     private int manufacturer_id;
     private String manufacturer_name;
 
-    public Plane_Manufacturer() {
+    public PlaneManufacturer() {
 
     }
 
-    public Plane_Manufacturer(int manufacturer_id, String manufacturer_name) {
+    public PlaneManufacturer(int manufacturer_id, String manufacturer_name) {
         this.manufacturer_id = manufacturer_id;
         this.manufacturer_name = manufacturer_name;
     }

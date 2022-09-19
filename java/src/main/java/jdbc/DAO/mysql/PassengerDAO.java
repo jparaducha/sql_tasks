@@ -93,7 +93,7 @@ public class PassengerDAO implements IBaseDAO<Passenger> {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(INSERT_PASSENGER);
-            preparedStatement.setString(1, object.getPassenger_name());
+            preparedStatement.setString(1, object.getPassengerName());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -139,7 +139,7 @@ public class PassengerDAO implements IBaseDAO<Passenger> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(UPDATE_PASSENGER);
-            preparedStatement.setString(1, object.getPassenger_name());
+            preparedStatement.setString(1, object.getPassengerName());
             preparedStatement.setInt(2, id);
 
             preparedStatement.executeUpdate();

@@ -34,13 +34,13 @@ public class Country {
     public String toString() {
         String citiesString = "";
         for (int i = 0; i < cities.size(); i++) {
-            citiesString += cities.get(i).getCity_name() + (cities.size() == i + 1 ? "" : ", ");
+            citiesString += cities.get(i).getCityName() + (cities.size() == i + 1 ? "" : ", ");
         }
 
         String airlinesString = "";
 
         for (int i = 0; i < airlines.size(); i++) {
-            airlinesString += airlines.get(i).getAirline_name() + (airlines.size() == i + 1 ? "" : ", ");
+            airlinesString += airlines.get(i).getAirlineName() + (airlines.size() == i + 1 ? "" : ", ");
         }
         return "Country{" + (airlines.size() > 0 ? "airlines=" + airlinesString + ", " : "") + (cities.size() > 0 ? "cities=[" + citiesString + "], " : "") + "country_name='" + country_name + '\'' + '}';
     }

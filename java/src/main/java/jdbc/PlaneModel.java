@@ -1,16 +1,16 @@
 package jdbc;
 
-public class Plane_Model {
+public class PlaneModel {
 
     private int model_id;
     private String model_name;
-    private Plane_Manufacturer manufacturer;
+    private PlaneManufacturer manufacturer;
 
-    public Plane_Model() {
+    public PlaneModel() {
 
     }
 
-    public Plane_Model(int model_id, String model_name, Plane_Manufacturer manufacturer) {
+    public PlaneModel(int model_id, String model_name, PlaneManufacturer manufacturer) {
         this.model_id = model_id;
         this.model_name = model_name;
         this.manufacturer = manufacturer;
@@ -32,11 +32,11 @@ public class Plane_Model {
         this.model_name = model_name;
     }
 
-    public Plane_Manufacturer getManufacturer() {
+    public PlaneManufacturer getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(Plane_Manufacturer manufacturer) {
+    public void setManufacturer(PlaneManufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
 }

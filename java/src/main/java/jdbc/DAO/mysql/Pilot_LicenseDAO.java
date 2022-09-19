@@ -2,7 +2,7 @@ package jdbc.DAO.mysql;
 
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
-import jdbc.Pilot_License;
+import jdbc.PilotLicense;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Pilot_LicenseDAO implements IBaseDAO<Pilot_License> {
+public class Pilot_LicenseDAO implements IBaseDAO<PilotLicense> {
 
     private final String INSERT_PILOTLICENSE = "INSERT INTO pilot_licenses(issued_on, expires, pilotId) " + "VALUES(?,?,?)";
     private final String GET_PILOTLICENSE_BY_ID = "SELECT * FROM pilot_licenses WHERE license_id = ?";
@@ -27,7 +27,7 @@ public class Pilot_LicenseDAO implements IBaseDAO<Pilot_License> {
     }
 
     @Override
-    public Pilot_License getById(int id) throws SQLException {
+    public PilotLicense getById(int id) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
@@ -37,10 +37,10 @@ public class Pilot_LicenseDAO implements IBaseDAO<Pilot_License> {
 
             ResultSet result = preparedStatement.executeQuery();
 
-            Pilot_License license;
+            PilotLicense license;
 
             result.next();
-            license = new Pilot_License(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
+            license = new PilotLicense(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
 
             return license;
         } catch (SQLException e) {
@@ -57,7 +57,7 @@ public class Pilot_LicenseDAO implements IBaseDAO<Pilot_License> {
     }
 
     @Override
-    public ArrayList<Pilot_License> getAll() throws SQLException {
+    public ArrayList<PilotLicense> getAll() throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
@@ -65,11 +65,11 @@ public class Pilot_LicenseDAO implements IBaseDAO<Pilot_License> {
             preparedStatement = connection.prepareStatement(GET_ALL_PILOTLICENSES);
             ResultSet result = preparedStatement.executeQuery();
 
-            ArrayList<Pilot_License> licenses = new ArrayList<>();
-            Pilot_License license;
+            ArrayList<PilotLicense> licenses = new ArrayList<>();
+            PilotLicense license;
 
             while (result.next()) {
-                license = new Pilot_License(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
+                license = new PilotLicense(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
 
                 licenses.add(license);
             }
@@ -89,7 +89,7 @@ public class Pilot_LicenseDAO implements IBaseDAO<Pilot_License> {
     }
 
     @Override
-    public void insertRow(Pilot_License object) throws SQLException {
+    public void insertRow(PilotLicense object) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
@@ -136,7 +136,7 @@ public class Pilot_LicenseDAO implements IBaseDAO<Pilot_License> {
     }
 
     @Override
-    public void updateRow(int id, Pilot_License object) throws SQLException {
+    public void updateRow(int id, PilotLicense object) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {

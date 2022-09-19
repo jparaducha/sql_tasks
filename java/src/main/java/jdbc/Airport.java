@@ -2,15 +2,15 @@ package jdbc;
 
 public class Airport {
 
-    private int airport_id;
-    private String airport_name;
-    private String IATA_code;
+    private int airportId;
+    private String airportName;
+    private String iataCode;
     private City city;
 
     public Airport(int id, String name, String IATA, City city) {
-        this.airport_id = id;
-        this.airport_name = name;
-        this.IATA_code = IATA;
+        this.airportId = id;
+        this.airportName = name;
+        this.iataCode = IATA;
         this.city = city;
     }
 
@@ -19,31 +19,31 @@ public class Airport {
 
     @Override
     public String toString() {
-        return "Airport{" + "airport_id=" + airport_id + ", airport_name='" + airport_name + '\'' + ", IATA_code='" + IATA_code + '\'' + ", city=" + city + '}';
+        return "Airport{" + "airport_id=" + airportId + ", airport_name='" + airportName + '\'' + ", IATA_code='" + iataCode + '\'' + ", city=" + city + '}';
     }
 
-    public int getAirport_id() {
-        return airport_id;
+    public int getAirportId() {
+        return airportId;
     }
 
-    public void setAirport_id(int airport_id) {
-        this.airport_id = airport_id;
+    public void setAirportId(int airportId) {
+        this.airportId = airportId;
     }
 
-    public String getAirport_name() {
-        return airport_name;
+    public String getAirportName() {
+        return airportName;
     }
 
-    public void setAirport_name(String airport_name) {
-        this.airport_name = airport_name;
+    public void setAirportName(String airportName) {
+        this.airportName = airportName;
     }
 
-    public String getIATA_code() {
-        return IATA_code;
+    public String getIataCode() {
+        return iataCode;
     }
 
-    public void setIATA_code(String IATA_code) {
-        this.IATA_code = IATA_code;
+    public void setIataCode(String iataCode) {
+        this.iataCode = iataCode;
     }
 
     public City getCity() {

@@ -2,31 +2,31 @@ package jdbc;
 
 public class Airline {
 
-    private String airline_name;
+    private String airlineName;
     private Country country;
-    private int airline_id;
+    private int airlineId;
 
     public Airline(Country country) {
         this.country = country;
     }
 
-    public Airline(int id, String airline_name, Country country) {
-        this.airline_name = airline_name;
-        this.airline_id = id;
+    public Airline(int id, String airlineName, Country country) {
+        this.airlineName = airlineName;
+        this.airlineId = id;
         this.country = country;
     }
 
     @Override
     public String toString() {
-        return "Airline{" + airline_name + '\'' + '}';
+        return "Airline{" + airlineName + '\'' + '}';
     }
 
-    public String getAirline_name() {
-        return airline_name;
+    public String getAirlineName() {
+        return airlineName;
     }
 
-    public void setAirline_name(String airline_name) {
-        this.airline_name = airline_name;
+    public void setAirlineName(String airlineName) {
+        this.airlineName = airlineName;
     }
 
     public Country getCountry() {
@@ -37,11 +37,11 @@ public class Airline {
         this.country = country;
     }
 
-    public int getAirline_id() {
-        return airline_id;
+    public int getAirlineId() {
+        return airlineId;
     }
 
-    public void setAirline_id(int airline_id) {
-        this.airline_id = airline_id;
+    public void setAirlineId(int airlineId) {
+        this.airlineId = airlineId;
     }
 }

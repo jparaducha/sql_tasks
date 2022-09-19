@@ -2,8 +2,8 @@ package jdbc.DAO.mysql;
 
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
-import jdbc.Plane_Manufacturer;
-import jdbc.Plane_Model;
+import jdbc.PlaneManufacturer;
+import jdbc.PlaneModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Plane_ModelDAO implements IBaseDAO<Plane_Model> {
+public class Plane_ModelDAO implements IBaseDAO<PlaneModel> {
 
     private final String INSERT_MODEL = "INSERT INTO plane_models(model_name, manufacturer) " + "VALUES(?,?)";
     private final String GET_MODEL_BY_ID = "SELECT * FROM plane_models JOIN plane_manufacturers ON plane_models.manufacturer = plane_manufacturers.manufacturer_id WHERE model_id = ?";
@@ -27,7 +27,7 @@ public class Plane_ModelDAO implements IBaseDAO<Plane_Model> {
     }
 
     @Override
-    public Plane_Model getById(int id) throws SQLException {
+    public PlaneModel getById(int id) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -38,8 +38,8 @@ public class Plane_ModelDAO implements IBaseDAO<Plane_Model> {
             ResultSet result = preparedStatement.executeQuery();
 
             result.next();
-            Plane_Manufacturer manufacturer = new Plane_Manufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
-            Plane_Model model = new Plane_Model(result.getInt("model_id"), result.getString("model_name"), manufacturer);
+            PlaneManufacturer manufacturer = new PlaneManufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
+            PlaneModel model = new PlaneModel(result.getInt("model_id"), result.getString("model_name"), manufacturer);
 
             return model;
         } catch (SQLException e) {
@@ -56,20 +56,20 @@ public class Plane_ModelDAO implements IBaseDAO<Plane_Model> {
     }
 
     @Override
-    public ArrayList<Plane_Model> getAll() throws SQLException {
+    public ArrayList<PlaneModel> getAll() throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(GET_ALL_MODELS);
 
-            ArrayList<Plane_Model> models = new ArrayList<>();
+            ArrayList<PlaneModel> models = new ArrayList<>();
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {
 
-                Plane_Manufacturer manufacturer = new Plane_Manufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
-                Plane_Model model = new Plane_Model(result.getInt("model_id"), result.getString("model_name"), manufacturer);
+                PlaneManufacturer manufacturer = new PlaneManufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
+                PlaneModel model = new PlaneModel(result.getInt("model_id"), result.getString("model_name"), manufacturer);
                 models.add(model);
             }
 
@@ -88,7 +88,7 @@ public class Plane_ModelDAO implements IBaseDAO<Plane_Model> {
     }
 
     @Override
-    public void insertRow(Plane_Model object) throws SQLException {
+    public void insertRow(PlaneModel object) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
@@ -135,7 +135,7 @@ public class Plane_ModelDAO implements IBaseDAO<Plane_Model> {
     }
 
     @Override
-    public void updateRow(int id, Plane_Model object) throws SQLException {
+    public void updateRow(int id, PlaneModel object) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {

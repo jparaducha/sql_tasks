@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class Flight {
 
     private ArrayList<Passenger> passengers = new ArrayList<>();
-    private int flight_id;
-    private String flight_duration;
+    private int flightId;
+    private String flightDuration;
     private double price;
-    private String departure_time;
-    private String arrival_time;
-    private Airport arrival_airport;
-    private Airport departure_airport;
+    private String departureTime;
+    private String arrivalTime;
+    private Airport arrivalAirport;
+    private Airport departureAirport;
     private Pilot pilot;
     private Plane plane;
     private Airline airline;
@@ -19,34 +19,34 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(int flight_id, String flight_duration, double price, String departure_time, String arrival_time, Airport arrival_airport, Airport departure_airport, Pilot pilot, Plane plane, Airline airline, ArrayList<Passenger> passengers) {
-        this.flight_id = flight_id;
-        this.flight_duration = flight_duration;
+    public Flight(int flightId, String flightDuration, double price, String departureTime, String arrivalTime, Airport arrivalAirport, Airport departureAirport, Pilot pilot, Plane plane, Airline airline, ArrayList<Passenger> passengers) {
+        this.flightId = flightId;
+        this.flightDuration = flightDuration;
         this.price = price;
-        this.departure_time = departure_time;
-        this.arrival_time = arrival_time;
-        this.arrival_airport = arrival_airport;
-        this.departure_airport = departure_airport;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.arrivalAirport = arrivalAirport;
+        this.departureAirport = departureAirport;
         this.pilot = pilot;
         this.plane = plane;
         this.airline = airline;
         this.passengers = passengers;
     }
 
-    public String getDeparture_time() {
-        return departure_time;
+    public String getDepartureTime() {
+        return departureTime;
     }
 
-    public void setDeparture_time(String departure_time) {
-        this.departure_time = departure_time;
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
     }
 
-    public String getArrival_time() {
-        return arrival_time;
+    public String getArrivalTime() {
+        return arrivalTime;
     }
 
-    public void setArrival_time(String arrival_time) {
-        this.arrival_time = arrival_time;
+    public void setArrivalTime(String arrivalTime) {
+        this.arrivalTime = arrivalTime;
     }
 
     public Pilot getPilot() {
@@ -73,25 +73,25 @@ public class Flight {
         this.airline = airline;
     }
 
-    public int getFlight_id() {
-        return flight_id;
+    public int getFlightId() {
+        return flightId;
     }
 
-    public void setFlight_id(int flight_id) {
-        this.flight_id = flight_id;
+    public void setFlightId(int flightId) {
+        this.flightId = flightId;
     }
 
-    public String getFlight_duration() {
-        return flight_duration;
+    public String getFlightDuration() {
+        return flightDuration;
     }
 
-    public void setFlight_duration(String flight_duration) {
-        this.flight_duration = flight_duration;
+    public void setFlightDuration(String flightDuration) {
+        this.flightDuration = flightDuration;
     }
 
     @Override
     public String toString() {
-        return "Flight{" + ", flight_id=" + flight_id + ", flight_duration='" + flight_duration + '\'' + ", price=" + price + ", departure_time='" + departure_time + '\'' + ", arrival_time='" + arrival_time + '\'' + ", arrival_airport=" + arrival_airport + ", departure_airport=" + departure_airport + ", pilot=" + pilot + ", plane=" + plane + ", airline=" + airline + "passengers=" + passengers + '}';
+        return "Flight{" + ", flight_id=" + flightId + ", flight_duration='" + flightDuration + '\'' + ", price=" + price + ", departure_time='" + departureTime + '\'' + ", arrival_time='" + arrivalTime + '\'' + ", arrival_airport=" + arrivalAirport + ", departure_airport=" + departureAirport + ", pilot=" + pilot + ", plane=" + plane + ", airline=" + airline + "passengers=" + passengers + '}';
     }
 
     public double getPrice() {
@@ -102,20 +102,20 @@ public class Flight {
         this.price = price;
     }
 
-    public Airport getArrival_airport() {
-        return arrival_airport;
+    public Airport getArrivalAirport() {
+        return arrivalAirport;
     }
 
-    public void setArrival_airport(Airport arrival_airport) {
-        this.arrival_airport = arrival_airport;
+    public void setArrivalAirport(Airport arrivalAirport) {
+        this.arrivalAirport = arrivalAirport;
     }
 
-    public Airport getDeparture_airport() {
-        return departure_airport;
+    public Airport getDepartureAirport() {
+        return departureAirport;
     }
 
-    public void setDeparture_airport(Airport departure_airport) {
-        this.departure_airport = departure_airport;
+    public void setDepartureAirport(Airport departureAirport) {
+        this.departureAirport = departureAirport;
     }
 
     public ArrayList<Passenger> getPassengers() {

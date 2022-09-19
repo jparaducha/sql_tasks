@@ -4,14 +4,14 @@ public class Plane {
 
     private int year;
     private String model;
-    private Plane_Manufacturer manufacturer;
+    private PlaneManufacturer manufacturer;
     private int planeId;
 
     public Plane() {
 
     }
 
-    public Plane(int id, int year, String model, Plane_Manufacturer manufacturer) {
+    public Plane(int id, int year, String model, PlaneManufacturer manufacturer) {
         this.planeId = id;
         this.year = year;
         this.model = model;
@@ -43,7 +43,7 @@ public class Plane {
         return Integer.parseInt(this.model);
     }
 
-    public Plane_Manufacturer getManufacturer() {
+    public PlaneManufacturer getManufacturer() {
         return manufacturer;
     }
 }
