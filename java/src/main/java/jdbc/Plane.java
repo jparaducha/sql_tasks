@@ -2,6 +2,18 @@ package jdbc;
 
 public class Plane {
 
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setManufacturer(PlaneManufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
     private int year;
     private String model;
     private PlaneManufacturer manufacturer;
@@ -45,5 +57,9 @@ public class Plane {
 
     public PlaneManufacturer getManufacturer() {
         return manufacturer;
+    }
+
+    public void setModelId(int i) {
+        this.model = String.valueOf(i);
     }
 }

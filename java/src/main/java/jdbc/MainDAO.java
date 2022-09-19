@@ -18,34 +18,41 @@ public class MainDAO {
         PlaneDAO pld = new PlaneDAO();
         CountryDAO countryDAO = new CountryDAO();
 
-        Plane plane2 = pld.getPlaneById(2);
+        Plane plane2 = pld.getById(2);
 
         System.out.println(plane2);
 
         System.out.println("-------------------------------------------------");
         System.out.println("----------------ALL PLANES-----------------------");
         System.out.println("-------------------------------------------------");
-        ArrayList<Plane> planes = pld.getAllPlanes();
+        ArrayList<Plane> planes = pld.getAll();
 
         for (int i = 0; i < planes.size(); i++) {
             System.out.println(planes.get(i));
         }
 
-        pld.insertPlane(3333, 2);
+        Plane planeToInsert = new Plane();
 
-        ArrayList<Plane> planeInserted = pld.getAllPlanes();
+        planeToInsert.setYear(3333);
+        planeToInsert.setModelId(2);
 
-        long idToDelete = 0;
-        System.out.println("--------------------------------");
+        pld.insertRow(planeToInsert);
+
+        ArrayList<Plane> planeInserted = pld.getAll();
+
+        int idToDelete = 0;
+        System.out.println("-------------------------------------------------");
+        System.out.println("----------------AFTER INSERTION------------------");
+        System.out.println("-------------------------------------------------");
         for (int i = 0; i < planeInserted.size(); i++) {
-            //System.out.println(planeInserted.get(i));
+            System.out.println(planeInserted.get(i));
 
             if (planeInserted.get(i).getYear() == 3333) {
                 idToDelete = planeInserted.get(i).getPlaneId();
             }
         }
 
-        pld.deletePlane(idToDelete);
+        pld.deleteById(idToDelete);
 
         Country Argentina = countryDAO.getById(1);
 
@@ -62,14 +69,12 @@ public class MainDAO {
             System.out.println(countries.get(i));
         }
 
-
-
         FlightDAO fDAO = new FlightDAO();
 
         Flight flight4 = fDAO.getById(4);
 
         LOGGER.info(flight4);
-        Plane plane5 = new PlaneDAO().getPlaneById(5);
+        Plane plane5 = new PlaneDAO().getById(5);
 
         LOGGER.info(plane5);
 
@@ -82,7 +87,6 @@ public class MainDAO {
             LOGGER.info("----------------------------------------------------------------------------------");
             LOGGER.info(flights.get(i));
         }
-
 
         System.out.println("-------------------------------------------------");
         System.out.println("----------------ALL AIRPORTS---------------------");
