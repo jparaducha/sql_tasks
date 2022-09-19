@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<flight>
-    <flight_id>1</flight_id>
-    <flight_duration>12:15:00</flight_duration>
-    <departure_time>2022-11-03T23:55:00</departure_time>
-    <arrival_time>2022-11-04T16:10:00</arrival_time>
-    <airlineId>4</airlineId>
-    <pilotId>5</pilotId>
-    <planeId>1</planeId>
-</flight>
+
+<flights>
+    <flight>
+        <flight_id>1</flight_id>
+        <flight_duration>12:15:00</flight_duration>
+        <departure_time>2022-11-03T23:55:00</departure_time>
+        <arrival_time>2022-11-04T16:10:00</arrival_time>
+        <pilotId>5</pilotId>
+        <plane>
+            <plane_id>1</plane_id>
+            <model>737</model>
+            <year>1967</year>
+        </plane>
+        <departure_airport>
+            <airport_id>1</airport_id>
+            <airport_name>Ministro Pistarini International</airport_name>
+            <IATA_code>EZE</IATA_code>
+            <cityId>1</cityId>
+        </departure_airport>
+        <arrival_airport>
+            <airport_id>27</airport_id>
+            <airport_name>Madrid-Barajas</airport_name>
+            <IATA_code>MAD</IATA_code>
+            <cityId>23</cityId>
+        </arrival_airport>
+        <passengers>
+            <passenger>
+                <passenger_id>2</passenger_id>
+                <passenger_name>Jefferson Hope</passenger_name>
+            </passenger>
+            <passenger>
+                <passenger_id>1</passenger_id>
+                <passenger_name>James Moriarty</passenger_name>
+            </passenger>
+            <passenger>
+                <passenger_id>3</passenger_id>
+                <passenger_name>Enoch Drebber</passenger_name>
+            </passenger>
+        </passengers>
+    </flight>
+</flights>

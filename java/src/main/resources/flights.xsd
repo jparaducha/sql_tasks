@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="flights" type="flightsType"/>
+  <xs:complexType name="planeType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="plane_id"/>
+      <xs:element type="xs:string" name="model"/>
+      <xs:element type="xs:string" name="year"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="departure_airportType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="airport_id"/>
+      <xs:element type="xs:string" name="airport_name"/>
+      <xs:element type="xs:string" name="IATA_code"/>
+      <xs:element type="xs:string" name="cityId"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="arrival_airportType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="airport_id"/>
+      <xs:element type="xs:string" name="airport_name"/>
+      <xs:element type="xs:string" name="IATA_code"/>
+      <xs:element type="xs:string" name="cityId"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="passengerType">
+    <xs:sequence>
+      <xs:element name="passenger_id">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="passenger_name">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Jefferson Hope"/>
+            <xs:enumeration value="James Moriarty"/>
+            <xs:enumeration value="Enoch Drebber"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="passengersType">
+    <xs:sequence>
+      <xs:element type="passengerType" name="passenger" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="flightType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="flight_id"/>
+      <xs:element type="xs:string" name="flight_duration"/>
+      <xs:element type="xs:string" name="departure_time"/>
+      <xs:element type="xs:string" name="arrival_time"/>
+      <xs:element type="xs:string" name="pilotId"/>
+      <xs:element type="planeType" name="plane"/>
+      <xs:element type="departure_airportType" name="departure_airport"/>
+      <xs:element type="arrival_airportType" name="arrival_airport"/>
+      <xs:element type="passengersType" name="passengers"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="flightsType">
+    <xs:sequence>
+      <xs:element type="flightType" name="flight"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

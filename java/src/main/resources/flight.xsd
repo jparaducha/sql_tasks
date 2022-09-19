@@ -1,19 +1,64 @@
 <?xml version="1.0"?>
 <xs:schema
         xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-    <xs:element name="flight">
+    <xs:element name="flights">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="flight_id" type="xs:int"/>
-                <xs:element name="flight_duration" type="xs:time"/>
-                <xs:element name="departure_time" type="xs:dateTime"/>
-                <xs:element name="arrival_time" type="xs:dateTime"/>
-                <xs:element name="airlineId" type="xs:int"/>
-                <xs:element name="pilotId" type="xs:int"/>
-                <xs:element name="planeId" type="xs:int"/>
+                <xs:element name="flight" minOccurs="0" maxOccurs="200">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="flight_id" type="xs:int"/>
+                            <xs:element name="flight_duration" type="xs:time"/>
+                            <xs:element name="departure_time" type="xs:dateTime"/>
+                            <xs:element name="arrival_time" type="xs:dateTime"/>
+                            <xs:element name="pilotId" type="xs:int"/>
+                            <xs:element name="plane">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="plane_id" type="xs:int"/>
+                                        <xs:element name="model" type="xs:string"/>
+                                        <xs:element name="year" type="xs:int"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="departure_airport">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="airport_id" type="xs:int"/>
+                                        <xs:element name="airport_name" type="xs:string"/>
+                                        <xs:element name="IATA_code" type="xs:string"/>
+                                        <xs:element name="cityId" type="xs:int"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="arrival_airport">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="airport_id" type="xs:int"/>
+                                        <xs:element name="airport_name" type="xs:string"/>
+                                        <xs:element name="IATA_code" type="xs:string"/>
+                                        <xs:element name="cityId" type="xs:int"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="passengers">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="passenger" minOccurs="0" maxOccurs="200">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="passenger_id" type="xs:int"/>
+                                                    <xs:element name="passenger_name" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
 </xs:schema>

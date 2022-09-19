@@ -22,14 +22,6 @@ public class DOMParser {
 
         Element parsedFile = parseElement(xmlFile);
 
-        //LOGGER.info("Root element: " + parsedFile.getNodeName());
-        //LOGGER.info("Root element: " + parsedFile.getFirstChild());
-        //LOGGER.info("getNodeName(): " + parsedFile.getElementsByTagName("flight_id").item(0).getNodeName());
-        //LOGGER.info("getNodeValue(): " + parsedFile.getElementsByTagName("flight_id").item(0).getNodeValue());
-
-        LOGGER.info("tagname" + parsedFile.getTagName());
-        LOGGER.info("tagnames ? " + parsedFile.getFirstChild());
-
         NodeList nodeList = parsedFile.getElementsByTagName("airport");
        /* for (int i = 0; i < nodeList.getLength(); i++) {
 

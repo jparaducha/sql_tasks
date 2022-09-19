@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<planes>
+    <plane>
+        <planeId>1</planeId>
+        <year>1967</year>
+        <model>737</model>
+    </plane>
+    <plane>
+        <planeId>18</planeId>
+        <year>2001</year>
+        <model>A330</model>
+    </plane>
+    <plane>
+        <planeId>6</planeId>
+        <year>1982</year>
+        <model>747</model>
+    </plane>
+</planes>
