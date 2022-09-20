@@ -44,7 +44,7 @@ public class CountryDAO implements IBaseDAO<Country> {
             result.next();
 
             Country country = new Country();
-            country.setCountry_name(result.getString("country_name"));
+            country.setCountryName(result.getString("country_name"));
             ArrayList<City> cities = new ArrayList<>();
 
             City city = new City(result.getInt("city_id"), result.getString("city_name"), result.getInt("country_id"));
@@ -57,7 +57,6 @@ public class CountryDAO implements IBaseDAO<Country> {
             }
 
             country.setCities(cities);
-
 
             return country;
         } catch (SQLException e) {
@@ -96,7 +95,7 @@ public class CountryDAO implements IBaseDAO<Country> {
 
                 citiesSet = new HashSet<>();
 
-                country.setCountry_name(rs.getString("country_name"));
+                country.setCountryName(rs.getString("country_name"));
 
                 while (currCountry.equals(rs.getString("country_name"))) {
 
@@ -139,7 +138,7 @@ public class CountryDAO implements IBaseDAO<Country> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(INSERT_COUNTRY);
-            preparedStatement.setString(1, object.getCountry_name());
+            preparedStatement.setString(1, object.getCountryName());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
@@ -182,7 +181,7 @@ public class CountryDAO implements IBaseDAO<Country> {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(UPDATE_COUNTRY);
-            preparedStatement.setString(1, object.getCountry_name());
+            preparedStatement.setString(1, object.getCountryName());
             preparedStatement.setInt(2, id);
 
             preparedStatement.executeUpdate();

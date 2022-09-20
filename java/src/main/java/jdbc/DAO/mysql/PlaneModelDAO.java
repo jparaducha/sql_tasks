@@ -95,8 +95,8 @@ public class PlaneModelDAO implements IBaseDAO<PlaneModel> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(INSERT_MODEL);
-            preparedStatement.setString(1, object.getModel_name());
-            preparedStatement.setInt(2, object.getManufacturer().getManufacturer_id());
+            preparedStatement.setString(1, object.getModelName());
+            preparedStatement.setInt(2, object.getManufacturer().getManufacturerId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -142,8 +142,8 @@ public class PlaneModelDAO implements IBaseDAO<PlaneModel> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(UPDATE_MODEL);
-            preparedStatement.setString(1, object.getModel_name());
-            preparedStatement.setInt(2, object.getManufacturer().getManufacturer_id());
+            preparedStatement.setString(1, object.getModelName());
+            preparedStatement.setInt(2, object.getManufacturer().getManufacturerId());
             preparedStatement.setInt(3, id);
 
             preparedStatement.executeUpdate();

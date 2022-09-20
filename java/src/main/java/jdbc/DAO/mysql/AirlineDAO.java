@@ -36,7 +36,7 @@ public class AirlineDAO implements IBaseDAO<Airline> {
             result.next();
 
             Country country = new Country();
-            country.setCountry_name(result.getString("country_name"));
+            country.setCountryName(result.getString("country_name"));
             Airline airline = new Airline(result.getInt("airline_id"), result.getString("airline_name"), country);
 
             return airline;
@@ -65,7 +65,7 @@ public class AirlineDAO implements IBaseDAO<Airline> {
             while (result.next()) {
 
                 Country country = new Country();
-                country.setCountry_name(result.getString("country_name"));
+                country.setCountryName(result.getString("country_name"));
                 Airline airline = new Airline(result.getInt("airline_id"), result.getString("airline_name"), country);
 
                 airlines.add(airline);

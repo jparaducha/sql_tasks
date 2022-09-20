@@ -2,41 +2,41 @@ package jdbc;
 
 public class PilotLicense {
 
-    private int license_id;
-    private String issued_on;
+    private int licenseId;
+    private String issuedOn;
     private String expires;
-    private int pilot_id;
+    private int pilotId;
 
     public PilotLicense() {
 
     }
 
-    public PilotLicense(int id, String issued, String expires, int pilot_id) {
-        this.license_id = id;
-        this.issued_on = issued;
+    public PilotLicense(int id, String issued, String expires, int pilotId) {
+        this.licenseId = id;
+        this.issuedOn = issued;
         this.expires = expires;
-        this.pilot_id = pilot_id;
+        this.pilotId = pilotId;
     }
 
     @Override
     public String toString() {
-        return "Pilot_License{" + "license_id=" + license_id + ", issued_on='" + issued_on + '\'' + ", expires='" + expires + '\'' + ", pilot_id=" + pilot_id + '}';
+        return "Pilot_License{" + "license_id=" + licenseId + ", issued_on='" + issuedOn + '\'' + ", expires='" + expires + '\'' + ", pilot_id=" + pilotId + '}';
     }
 
-    public int getLicense_id() {
-        return license_id;
+    public int getLicenseId() {
+        return licenseId;
     }
 
-    public void setLicense_id(int license_id) {
-        this.license_id = license_id;
+    public void setLicenseId(int licenseId) {
+        this.licenseId = licenseId;
     }
 
-    public String getIssued_on() {
-        return issued_on;
+    public String getIssuedOn() {
+        return issuedOn;
     }
 
-    public void setIssued_on(String issued_on) {
-        this.issued_on = issued_on;
+    public void setIssuedOn(String issuedOn) {
+        this.issuedOn = issuedOn;
     }
 
     public String getExpires() {
@@ -47,11 +47,11 @@ public class PilotLicense {
         this.expires = expires;
     }
 
-    public int getPilot_id() {
-        return pilot_id;
+    public int getPilotId() {
+        return pilotId;
     }
 
-    public void setPilot_id(int pilot_id) {
-        this.pilot_id = pilot_id;
+    public void setPilotId(int pilotId) {
+        this.pilotId = pilotId;
     }
 }

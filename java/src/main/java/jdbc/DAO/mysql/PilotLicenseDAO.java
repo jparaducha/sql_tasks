@@ -95,9 +95,9 @@ public class PilotLicenseDAO implements IBaseDAO<PilotLicense> {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(INSERT_PILOTLICENSE);
-            preparedStatement.setString(1, object.getIssued_on());
+            preparedStatement.setString(1, object.getIssuedOn());
             preparedStatement.setString(2, object.getExpires());
-            preparedStatement.setInt(3, object.getPilot_id());
+            preparedStatement.setInt(3, object.getPilotId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -143,9 +143,9 @@ public class PilotLicenseDAO implements IBaseDAO<PilotLicense> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(UPDATE_PILOTLICENSE);
-            preparedStatement.setString(1, object.getIssued_on());
+            preparedStatement.setString(1, object.getIssuedOn());
             preparedStatement.setString(2, object.getExpires());
-            preparedStatement.setInt(3, object.getPilot_id());
+            preparedStatement.setInt(3, object.getPilotId());
             preparedStatement.setInt(4, id);
 
             preparedStatement.executeUpdate();

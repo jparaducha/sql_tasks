@@ -6,28 +6,28 @@ public class Country {
 
     private ArrayList<Airline> airlines = new ArrayList<Airline>();
     private ArrayList<City> cities = new ArrayList<>();
-    private String country_name;
-    private int country_id;
+    private String countryName;
+    private int countryId;
 
     public Country() {
     }
 
-    public Country(String name, int country_id) {
-        this.country_name = name;
-        this.country_id = country_id;
+    public Country(String name, int countryId) {
+        this.countryName = name;
+        this.countryId = countryId;
     }
 
     public Country(String name, ArrayList<City> cities) {
-        this.country_name = name;
+        this.countryName = name;
         this.cities = cities;
     }
 
     public int getCountryId() {
-        return country_id;
+        return countryId;
     }
 
-    public void setCountry_id(int country_id) {
-        this.country_id = country_id;
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Country {
         for (int i = 0; i < airlines.size(); i++) {
             airlinesString += airlines.get(i).getAirlineName() + (airlines.size() == i + 1 ? "" : ", ");
         }
-        return "Country{" + (airlines.size() > 0 ? "airlines=" + airlinesString + ", " : "") + (cities.size() > 0 ? "cities=[" + citiesString + "], " : "") + "country_name='" + country_name + '\'' + '}';
+        return "Country{" + (airlines.size() > 0 ? "airlines=" + airlinesString + ", " : "") + (cities.size() > 0 ? "cities=[" + citiesString + "], " : "") + "country_name='" + countryName + '\'' + '}';
     }
 
     public ArrayList<City> getCities() {
@@ -53,12 +53,12 @@ public class Country {
         this.cities = cities;
     }
 
-    public String getCountry_name() {
-        return country_name;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setCountry_name(String country_name) {
-        this.country_name = country_name;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
     public ArrayList<Airline> getAirlines() {

@@ -93,7 +93,7 @@ public class PlaneManufacturerDAO implements IBaseDAO<PlaneManufacturer> {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(INSERT_MANUFACTURER);
-            preparedStatement.setString(1, object.getManufacturer_name());
+            preparedStatement.setString(1, object.getManufacturerName());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -137,7 +137,7 @@ public class PlaneManufacturerDAO implements IBaseDAO<PlaneManufacturer> {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(UPDATE_MANUFACTURER);
-            preparedStatement.setString(1, object.getManufacturer_name());
+            preparedStatement.setString(1, object.getManufacturerName());
             preparedStatement.setInt(2, id);
 
             preparedStatement.executeUpdate();

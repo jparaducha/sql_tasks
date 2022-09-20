@@ -2,34 +2,34 @@ package jdbc;
 
 public class PlaneModel {
 
-    private int model_id;
-    private String model_name;
+    private int modelId;
+    private String modelName;
     private PlaneManufacturer manufacturer;
 
     public PlaneModel() {
 
     }
 
-    public PlaneModel(int model_id, String model_name, PlaneManufacturer manufacturer) {
-        this.model_id = model_id;
-        this.model_name = model_name;
+    public PlaneModel(int modelId, String modelName, PlaneManufacturer manufacturer) {
+        this.modelId = modelId;
+        this.modelName = modelName;
         this.manufacturer = manufacturer;
     }
 
-    public int getModel_id() {
-        return model_id;
+    public int getModelId() {
+        return modelId;
     }
 
-    public void setModel_id(int model_id) {
-        this.model_id = model_id;
+    public void setModelId(int modelId) {
+        this.modelId = modelId;
     }
 
-    public String getModel_name() {
-        return model_name;
+    public String getModelName() {
+        return modelName;
     }
 
-    public void setModel_name(String model_name) {
-        this.model_name = model_name;
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 
     public PlaneManufacturer getManufacturer() {

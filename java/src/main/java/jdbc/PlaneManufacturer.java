@@ -2,36 +2,36 @@ package jdbc;
 
 public class PlaneManufacturer {
 
-    private int manufacturer_id;
-    private String manufacturer_name;
+    private int manufacturerId;
+    private String manufacturerName;
 
     public PlaneManufacturer() {
 
     }
 
-    public PlaneManufacturer(int manufacturer_id, String manufacturer_name) {
-        this.manufacturer_id = manufacturer_id;
-        this.manufacturer_name = manufacturer_name;
+    public PlaneManufacturer(int manufacturerId, String manufacturerName) {
+        this.manufacturerId = manufacturerId;
+        this.manufacturerName = manufacturerName;
     }
 
     @Override
     public String toString() {
-        return "Plane_Manufacturer{" + "manufacturer_id=" + manufacturer_id + ", manufacturer_name='" + manufacturer_name + '\'' + '}';
+        return "Plane_Manufacturer{" + "manufacturer_id=" + manufacturerId + ", manufacturer_name='" + manufacturerName + '\'' + '}';
     }
 
-    public int getManufacturer_id() {
-        return manufacturer_id;
+    public int getManufacturerId() {
+        return manufacturerId;
     }
 
-    public void setManufacturer_id(int manufacturer_id) {
-        this.manufacturer_id = manufacturer_id;
+    public void setManufacturerId(int manufacturerId) {
+        this.manufacturerId = manufacturerId;
     }
 
-    public String getManufacturer_name() {
-        return manufacturer_name;
+    public String getManufacturerName() {
+        return manufacturerName;
     }
 
-    public void setManufacturer_name(String manufacturer_name) {
-        this.manufacturer_name = manufacturer_name;
+    public void setManufacturerName(String manufacturerName) {
+        this.manufacturerName = manufacturerName;
     }
 }
