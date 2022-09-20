@@ -18,7 +18,7 @@ public class Airline {
 
     @Override
     public String toString() {
-        return "Airline{" + airlineName + '\'' + '}';
+        return "Airline{" + airlineName + '\'' + country.toString() + " airlineId " + airlineId + '}';
     }
 
     public String getAirlineName() {

@@ -13,7 +13,7 @@ public class AirlineDAO implements IBaseDAO<Airline> {
 
     private final String INSERT_AIRLINE = "INSERT INTO airlines(airline_name, countryId) " + "VALUES(?,?)";
     private final String GET_AIRLINE_BY_ID = "SELECT * FROM airlines LEFT JOIN countries ON airlines.countryId = countries.country_id WHERE airline_id = ?";
-    private final String GET_ALL_AIRLINES = "SELECT * FROM airlines LEFT JOIN countries ON countries.country_id = cities.countryId ORDER BY airline_id"; // LEFT JOIN airlines ON countries.country_id = airlines.countryId
+    private final String GET_ALL_AIRLINES = "SELECT * FROM airlines LEFT JOIN countries ON countries.country_id = airlines.countryId ORDER BY airline_id";
     private final String DELETE_BY_ID = "DELETE FROM airlines WHERE airline_id = ?";
     private final String UPDATE_AIRLINE = "UPDATE airlines SET airline_name =  ?, countryId = ? WHERE airline_id = ?";
     private final String DELETE_ALL = "DELETE FROM airlines";
