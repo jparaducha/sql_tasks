@@ -25,7 +25,7 @@ public class Flight {
     private Airport departureAirport;
     @XmlTransient
     private Pilot pilot;
-    @XmlElement(name = "airportName")
+    @XmlElement(name = "plane")
     private Plane plane;
     @XmlTransient
     private Airline airline;
