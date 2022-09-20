@@ -1,0 +1,12 @@
+{
+  "airportId": 1,
+  "airportName": "Ministro Pistarini International",
+  "iataCode": "EZE",
+  "city": {
+    "cityId": 1,
+    "cityName": "Ezeiza",
+    "country": {
+      "countryName": "Argentina"
+    }
+  }
+}

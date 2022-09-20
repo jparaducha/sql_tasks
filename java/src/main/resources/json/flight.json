@@ -1,0 +1,57 @@
+{
+  "flightId": 9,
+  "flightDuration": "15:00:00",
+  "price": 1800.0,
+  "departureTime": "2022-11-04 15:15:00",
+  "arrivalTime": "2022-11-05 08:15:00",
+  "departureAirport": {
+    "airportId": 1,
+    "airportName": "Ministro Pistarini International",
+    "iataCode": "EZE",
+    "city": {
+      "cityId": 1,
+      "cityName": "Ezeiza",
+      "country": {
+        "countryName": "Argentina"
+      }
+    }
+  },
+  "arrivalAirport": {
+    "airportId": 9,
+    "airportName": "Sheremetyevo International",
+    "iataCode": "SVO",
+    "city": {
+      "cityId": 1,
+      "cityName": "Moscow",
+      "country": {
+        "countryName": "Russia"
+      }
+    }
+  },
+  "pilot": {
+    "pilotId": 5,
+    "pilotName": "Jorge Luis Borges",
+    "pilotAge": 27,
+    "license": {
+      "licenseId": 5,
+      "issued_on": "2020-06-07",
+      "expires": "2027-06-07"
+    }
+  },
+  "plane": {
+    "planeId": 6,
+    "year": 1972,
+    "model": "747",
+    "manufacturer": {
+      "manufacturerId": 1,
+      "manufacturerName": "Boeing"
+    }
+  },
+  "airline": {
+    "airlineId": 1,
+    "airlineName": "Qatar Airways",
+    "country": {
+      "countryName": "Qatar"
+    }
+  }
+}

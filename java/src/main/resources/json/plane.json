@@ -1,0 +1,9 @@
+{
+  "planeId": 6,
+  "year": 1972,
+  "model": "747",
+  "manufacturer": {
+    "manufacturerId": 1,
+    "manufacturerName": "Boeing"
+  }
+}
