@@ -1,6 +1,8 @@
 package xml;
 
 import jdbc.Airport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,23 +14,29 @@ import java.io.IOException;
 
 public class JaxbParser {
 
+    private static final Logger LOGGER = LogManager.getLogger(JaxbParser.class);
+
     public static void main(String[] args) throws JAXBException, IOException {
-        objectToXML();
+        try {
+            objectToXML();
 
-        String newXmlPath = "java\\src\\main\\resources\\airportTest.xml";
+            String newXmlPath = "java\\src\\main\\resources\\airportTest.xml";
 
-        Airport unmarshalledAirport = xmlToAirport(newXmlPath);
+            Airport unmarshalledAirport = xmlToAirport(newXmlPath);
 
-        System.out.println(unmarshalledAirport);
+            LOGGER.info(unmarshalledAirport);
 
         /*
         //2022-11-04 02:00:00'
         String pattern = "yyyy-mm-dd HH:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("sp", "AR"));
         String date = simpleDateFormat.format(new Date());
-        System.out.println(date);
+        LOGGER.info(date);
 
          */
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
     }
 
     public static void objectToXML() throws JAXBException, IOException {
