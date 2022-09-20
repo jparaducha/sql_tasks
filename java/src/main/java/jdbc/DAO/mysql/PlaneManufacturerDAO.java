@@ -2,7 +2,7 @@ package jdbc.DAO.mysql;
 
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
-import jdbc.PilotLicense;
+import jdbc.PlaneManufacturer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,37 +12,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Pilot_LicenseDAO implements IBaseDAO<PilotLicense> {
+public class PlaneManufacturerDAO implements IBaseDAO<PlaneManufacturer> {
 
-    private final String INSERT_PILOTLICENSE = "INSERT INTO pilot_licenses(issued_on, expires, pilotId) " + "VALUES(?,?,?)";
-    private final String GET_PILOTLICENSE_BY_ID = "SELECT * FROM pilot_licenses WHERE license_id = ?";
-    private final String GET_ALL_PILOTLICENSES = "SELECT * FROM pilot_licenses ORDER BY license_id";
-    private final String DELETE_BY_ID = "DELETE FROM pilot_licenses WHERE license_id = ?";
-    private final String UPDATE_PILOTLICENSE = "UPDATE pilot_licenses SET issued_on =  ?, expires = ?, pilotId = ? WHERE license_id = ?";
-    private final String DELETE_ALL = "DELETE FROM pilot_licenses";
-    private final Logger LOGGER = LogManager.getLogger(Pilot_LicenseDAO.class);
-    PreparedStatement preparedStatement;
+    private final String INSERT_MANUFACTURER = "INSERT INTO plane_manufacturers(manufacturer_name) " + "VALUES(?)";
+    private final String GET_MANUFACTURER_BY_ID = "SELECT * FROM plane_manufacturers WHERE manufacturer_id = ?";
+    private final String GET_ALL_MANUFACTURERS = "SELECT * FROM plane_manufacturers ORDER BY manufacturer_id";
+    private final String DELETE_BY_ID = "DELETE FROM plane_manufacturers WHERE manufacturer_id = ?";
+    private final String UPDATE_MANUFACTURER = "UPDATE plane_manufacturers SET manufacturer_name =  ? WHERE manufacturer_id = ?";
+    private final String DELETE_ALL = "DELETE FROM plane_manufacturers";
+    private final Logger LOGGER = LogManager.getLogger(PlaneManufacturerDAO.class);
 
-    public Pilot_LicenseDAO() throws SQLException {
+    public PlaneManufacturerDAO() throws SQLException {
     }
 
     @Override
-    public PilotLicense getById(int id) throws SQLException {
+    public PlaneManufacturer getById(int id) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement(GET_PILOTLICENSE_BY_ID);
+            preparedStatement = connection.prepareStatement(GET_MANUFACTURER_BY_ID);
             preparedStatement.setInt(1, id);
 
             ResultSet result = preparedStatement.executeQuery();
 
-            PilotLicense license;
-
             result.next();
-            license = new PilotLicense(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
+            PlaneManufacturer manufacturer = new PlaneManufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
 
-            return license;
+            return manufacturer;
         } catch (SQLException e) {
             LOGGER.error(e);
             return null;
@@ -57,24 +54,25 @@ public class Pilot_LicenseDAO implements IBaseDAO<PilotLicense> {
     }
 
     @Override
-    public ArrayList<PilotLicense> getAll() throws SQLException {
+    public ArrayList<PlaneManufacturer> getAll() throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement(GET_ALL_PILOTLICENSES);
+            preparedStatement = connection.prepareStatement(GET_ALL_MANUFACTURERS);
+
             ResultSet result = preparedStatement.executeQuery();
 
-            ArrayList<PilotLicense> licenses = new ArrayList<>();
-            PilotLicense license;
+            ArrayList<PlaneManufacturer> manufacturers = new ArrayList<>();
 
             while (result.next()) {
-                license = new PilotLicense(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
 
-                licenses.add(license);
+                PlaneManufacturer manufacturer = new PlaneManufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
+
+                manufacturers.add(manufacturer);
             }
 
-            return licenses;
+            return manufacturers;
         } catch (SQLException e) {
             LOGGER.error(e);
             return null;
@@ -89,15 +87,13 @@ public class Pilot_LicenseDAO implements IBaseDAO<PilotLicense> {
     }
 
     @Override
-    public void insertRow(PilotLicense object) throws SQLException {
+    public void insertRow(PlaneManufacturer object) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement(INSERT_PILOTLICENSE);
-            preparedStatement.setString(1, object.getIssued_on());
-            preparedStatement.setString(2, object.getExpires());
-            preparedStatement.setInt(3, object.getPilot_id());
+            preparedStatement = connection.prepareStatement(INSERT_MANUFACTURER);
+            preparedStatement.setString(1, object.getManufacturer_name());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -118,7 +114,6 @@ public class Pilot_LicenseDAO implements IBaseDAO<PilotLicense> {
         Connection connection = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-
             preparedStatement = connection.prepareStatement(DELETE_BY_ID);
             preparedStatement.setInt(1, id);
 
@@ -136,17 +131,14 @@ public class Pilot_LicenseDAO implements IBaseDAO<PilotLicense> {
     }
 
     @Override
-    public void updateRow(int id, PilotLicense object) throws SQLException {
+    public void updateRow(int id, PlaneManufacturer object) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-
-            preparedStatement = connection.prepareStatement(UPDATE_PILOTLICENSE);
-            preparedStatement.setString(1, object.getIssued_on());
-            preparedStatement.setString(2, object.getExpires());
-            preparedStatement.setInt(3, object.getPilot_id());
-            preparedStatement.setInt(4, id);
+            preparedStatement = connection.prepareStatement(UPDATE_MANUFACTURER);
+            preparedStatement.setString(1, object.getManufacturer_name());
+            preparedStatement.setInt(2, id);
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Plane_ModelDAO implements IBaseDAO<PlaneModel> {
+public class PlaneModelDAO implements IBaseDAO<PlaneModel> {
 
     private final String INSERT_MODEL = "INSERT INTO plane_models(model_name, manufacturer) " + "VALUES(?,?)";
     private final String GET_MODEL_BY_ID = "SELECT * FROM plane_models JOIN plane_manufacturers ON plane_models.manufacturer = plane_manufacturers.manufacturer_id WHERE model_id = ?";
@@ -21,9 +21,9 @@ public class Plane_ModelDAO implements IBaseDAO<PlaneModel> {
     private final String DELETE_BY_ID = "DELETE FROM plane_manufacturers WHERE model_id = ?";
     private final String UPDATE_MODEL = "UPDATE plane_manufacturers SET model_name =  ? , manufacturer = ? WHERE model_id = ?";
     private final String DELETE_ALL = "DELETE FROM plane_manufacturers";
-    private final Logger LOGGER = LogManager.getLogger(Plane_ModelDAO.class);
+    private final Logger LOGGER = LogManager.getLogger(PlaneModelDAO.class);
 
-    public Plane_ModelDAO() throws SQLException {
+    public PlaneModelDAO() throws SQLException {
     }
 
     @Override
