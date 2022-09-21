@@ -6,7 +6,12 @@
         <flight_duration>12:15:00</flight_duration>
         <departure_time>2022-11-03T23:55:00</departure_time>
         <arrival_time>2022-11-04T16:10:00</arrival_time>
-        <pilotId>5</pilotId>
+        <price>1750.25</price>
+        <pilot>
+            <pilotId>5</pilotId>
+            <pilotName>Jorge Luis Borges</pilotName>
+            <pilotAge>27</pilotAge>
+        </pilot>
         <plane>
             <plane_id>1</plane_id>
             <model>737</model>

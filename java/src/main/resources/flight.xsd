@@ -11,7 +11,16 @@
                             <xs:element name="flight_duration" type="xs:time"/>
                             <xs:element name="departure_time" type="xs:dateTime"/>
                             <xs:element name="arrival_time" type="xs:dateTime"/>
-                            <xs:element name="pilotId" type="xs:int"/>
+                            <xs:element name="price" type="xs:double"/>
+                            <xs:element name="pilot">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="pilotId" type="xs:int"/>
+                                        <xs:element name="pilotName" type="xs:string"/>
+                                        <xs:element name="pilotAge" type="xs:int"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element name="plane">
                                 <xs:complexType>
                                     <xs:sequence>
