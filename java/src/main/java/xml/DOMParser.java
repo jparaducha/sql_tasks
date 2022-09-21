@@ -1,6 +1,6 @@
 package xml;
 
-import jdbc.Airport;
+import jdbc.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -19,6 +19,11 @@ public class DOMParser {
     public static void main(String[] args) {
 
         File xmlFile = new File("java\\src\\main\\resources\\airports.xml");
+        ArrayList<Flight> flights = flightParser("java\\src\\main\\resources\\flight.xml");
+
+        for (Flight flight : flights) {
+            LOGGER.info(flight);
+        }
 
         Element parsedFile = parseElement(xmlFile);
 
@@ -70,6 +75,201 @@ public class DOMParser {
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             throw new RuntimeException(e);
+        }
+    }
+
+    public static ArrayList<Flight> flightParser(String xmlPath) {
+        ArrayList<Flight> flights = new ArrayList<>();
+        try {
+
+            File flightXml = new File(xmlPath);
+            Element flightElement = parseElement(flightXml);
+
+            NodeList flightNodes = flightElement.getChildNodes();
+
+            for (int i = 0; i < flightNodes.getLength(); i++) {
+
+                Flight flight = new Flight();
+                Node flightNode = flightNodes.item(i);
+                if (flightNode.getNodeType() != Node.ELEMENT_NODE) {
+                    continue;
+                }
+
+                NodeList flightElementList = flightNode.getChildNodes();
+
+                for (int j = 0; j < flightElementList.getLength(); j++) {
+                    Node flightElementNode = flightElementList.item(j);
+
+                    if (flightElementNode.getNodeType() == Node.ELEMENT_NODE) {
+                        NodeList newNodeList = flightElementNode.getChildNodes();
+
+                        switch (flightElementNode.getNodeName()) {
+                            case "flight_id":
+                                flight.setFlightId(Integer.parseInt(flightElementNode.getTextContent()));
+                                break;
+
+                            case "price":
+                                flight.setPrice(Double.parseDouble(flightElementNode.getTextContent()));
+                                break;
+                            case "flight_duration":
+                                flight.setFlightDuration(flightElementNode.getTextContent());
+                                break;
+
+                            case "departure_time":
+                                flight.setDepartureTime(flightElementNode.getTextContent());
+                                break;
+
+                            case "arrival_time":
+                                flight.setArrivalTime(flightElementNode.getTextContent());
+                                break;
+
+                            case "pilot":
+                                Pilot pilot = new Pilot();
+                                for (int p = 0; p < newNodeList.getLength(); p++) {
+                                    Node pilotNode = newNodeList.item(p);
+
+                                    if (pilotNode.getNodeType() != Node.ELEMENT_NODE) {
+                                        continue;
+                                    }
+                                    switch (pilotNode.getNodeName()) {
+                                        case "pilotId":
+                                            pilot.setPilotId(Integer.parseInt(pilotNode.getTextContent()));
+                                            break;
+                                        case "pilotName":
+                                            pilot.setPilotName(pilotNode.getTextContent());
+                                            break;
+                                        case "pilotAge":
+                                            pilot.setPilotAge(Integer.parseInt(pilotNode.getTextContent()));
+                                            break;
+                                    }
+                                }
+                                flight.setPilot(pilot);
+                                break;
+
+                            case "plane":
+                                Plane plane = new Plane();
+
+                                for (int p = 0; p < newNodeList.getLength(); p++) {
+                                    Node planeNode = newNodeList.item(p);
+
+                                    if (planeNode.getNodeType() != Node.ELEMENT_NODE) {
+                                        continue;
+                                    }
+                                    switch (planeNode.getNodeName()) {
+                                        case "plane_id":
+                                            plane.setPlaneId(Integer.parseInt(planeNode.getTextContent()));
+                                            break;
+                                        case "model":
+                                            plane.setModel(planeNode.getTextContent());
+                                            break;
+                                        case "year":
+                                            plane.setYear(Integer.parseInt(planeNode.getTextContent()));
+                                            break;
+                                    }
+                                }
+                                flight.setPlane(plane);
+                                break;
+                            case "departure_airport":
+                                Airport departureAirport = new Airport();
+
+                                for (int p = 0; p < newNodeList.getLength(); p++) {
+                                    Node departureNode = newNodeList.item(p);
+
+                                    if (departureNode.getNodeType() != Node.ELEMENT_NODE) {
+                                        continue;
+                                    }
+                                    switch (departureNode.getNodeName()) {
+                                        case "airport_id":
+                                            departureAirport.setAirportId(Integer.parseInt(departureNode.getTextContent()));
+                                            break;
+                                        case "airport_name":
+                                            departureAirport.setAirportName(departureNode.getTextContent());
+                                            break;
+                                        case "IATA_code":
+                                            departureAirport.setIataCode(departureNode.getTextContent());
+                                            break;
+                                        case "cityId":
+                                            City city = new City(Integer.parseInt(departureNode.getTextContent()), "");
+                                            departureAirport.setCity(city);
+                                            break;
+                                    }
+                                }
+                                flight.setDepartureAirport(departureAirport);
+
+                                break;
+                            case "arrival_airport":
+                                Airport arrivalAirport = new Airport();
+
+                                for (int p = 0; p < newNodeList.getLength(); p++) {
+                                    Node arrivalNode = newNodeList.item(p);
+
+                                    if (arrivalNode.getNodeType() != Node.ELEMENT_NODE) {
+                                        continue;
+                                    }
+                                    switch (arrivalNode.getNodeName()) {
+                                        case "airport_id":
+                                            arrivalAirport.setAirportId(Integer.parseInt(arrivalNode.getTextContent()));
+                                            break;
+                                        case "airport_name":
+                                            arrivalAirport.setAirportName(arrivalNode.getTextContent());
+                                            break;
+                                        case "IATA_code":
+                                            arrivalAirport.setIataCode(arrivalNode.getTextContent());
+                                            break;
+                                        case "cityId":
+                                            City city = new City(Integer.parseInt(arrivalNode.getTextContent()), "");
+                                            arrivalAirport.setCity(city);
+                                            break;
+                                    }
+                                }
+                                flight.setArrivalAirport(arrivalAirport);
+
+                                break;
+                            case "passengers":
+                                ArrayList<Passenger> passengers = new ArrayList<>();
+                                for (int p = 0; p < newNodeList.getLength(); p++) {
+                                    Passenger passenger = new Passenger();
+
+                                    Node passengerNode = newNodeList.item(p);
+
+                                    if (passengerNode.getNodeType() != Node.ELEMENT_NODE) {
+                                        continue;
+                                    }
+
+                                    NodeList passengerNodeChildNodes = passengerNode.getChildNodes();
+
+                                    for (int q = 0; q < passengerNodeChildNodes.getLength(); q++) {
+
+                                        Node passengerField = passengerNodeChildNodes.item(q);
+
+                                        if (passengerField.getNodeType() != Node.ELEMENT_NODE) {
+                                            continue;
+                                        }
+
+                                        switch (passengerField.getNodeName()) {
+                                            case "passenger_id":
+                                                passenger.setPassengerId(Integer.parseInt(passengerField.getTextContent()));
+                                                break;
+                                            case "passenger_name":
+                                                passenger.setPassengerName(passengerField.getTextContent());
+                                                break;
+                                        }
+                                    }
+                                    passengers.add(passenger);
+                                }
+                                flight.setPassengers(passengers);
+                                break;
+                        }
+                    }
+                }
+                flights.add(flight);
+            }
+
+            return flights;
+        } catch (Exception e) {
+            LOGGER.error(e);
+            e.printStackTrace();
+            return null;
         }
     }
 }
