@@ -1,12 +1,14 @@
 package jdbc;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.xml.bind.annotation.*;
 
 @JsonRootName("airport")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @XmlRootElement(name = "airport")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Airport {

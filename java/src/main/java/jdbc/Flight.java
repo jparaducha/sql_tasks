@@ -1,6 +1,7 @@
 package jdbc;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -8,6 +9,7 @@ import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 
 @JsonRootName("flight")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @XmlRootElement(name = "flight")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Flight {
