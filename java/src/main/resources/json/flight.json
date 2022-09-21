@@ -53,5 +53,27 @@
     "country": {
       "countryName": "Qatar"
     }
-  }
+  },
+  "passengers": [
+    {
+      "passengerId": 10,
+      "passengerName": "Diego Maradona",
+      "passengerContactNumber": "1968"
+    },
+    {
+      "passengerId": 20,
+      "passengerName": "Roger Federer",
+      "passengerContactNumber": "2007"
+    },
+    {
+      "passengerId": 6,
+      "passengerName": "Michael Jordan",
+      "passengerContactNumber": "1998"
+    },
+    {
+      "passengerId": 12,
+      "passengerName": "Norberto Briasco",
+      "passengerContactNumber": "2023"
+    }
+  ]
 }
