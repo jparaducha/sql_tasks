@@ -1,10 +1,21 @@
 package jdbc;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "city")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class City {
 
+    @XmlElement(name = "countryId")
     private int countryId;
+    @XmlElement(name = "cityId")
     private int cityId;
+    @XmlElement(name = "cityName")
     private String cityName;
+    @XmlElement(name = "country")
     private Country country;
 
     public City() {

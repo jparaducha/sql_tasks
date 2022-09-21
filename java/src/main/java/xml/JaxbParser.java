@@ -1,6 +1,10 @@
 package xml;
 
 import jdbc.Airport;
+import jdbc.City;
+import jdbc.Country;
+import jdbc.DAO.mysql.FlightDAO;
+import jdbc.Flight;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class JaxbParser {
 
@@ -36,15 +41,39 @@ public class JaxbParser {
          */
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    public static void objectToXML() throws JAXBException, IOException {
+    public static void objectToXML() throws JAXBException, IOException, SQLException {
 
         Airport airport = new Airport();
         airport.setAirportName("Airport Test Name");
         airport.setAirportId(17);
         airport.setIataCode("ATN");
+
+        Country argentina = new Country();
+        argentina.setCountryName("Argentina");
+        argentina.setCountryId(1986);
+
+        City city = new City();
+        city.setCityName("P.R. Sáenz Peña");
+        city.setCityId(1915);
+        city.setCountry(argentina);
+
+        Flight flight4 = new FlightDAO().getById(5);
+
+        JAXBContext flightContext = JAXBContext.newInstance(Flight.class);
+        Marshaller flightContextMarshaller = flightContext.createMarshaller();
+        flightContextMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        flightContextMarshaller.marshal(flight4, new File("java\\src\\main\\resources\\flightTest.xml"));
+
+        LOGGER.info(flight4);
+
+        JAXBContext cityContext = JAXBContext.newInstance(City.class);
+        Marshaller cityMar = cityContext.createMarshaller();
+        cityMar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        cityMar.marshal(city, new File("java\\src\\main\\resources\\cityTest.xml"));
 
         JAXBContext context = JAXBContext.newInstance(Airport.class);
         Marshaller mar = context.createMarshaller();

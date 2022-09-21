@@ -1,34 +1,37 @@
 package jdbc;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
 @XmlRootElement(name = "flight")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Flight {
 
-    @XmlTransient
-    private ArrayList<Passenger> passengers = new ArrayList<>();
     @XmlElement(name = "flightId")
     private int flightId;
     @XmlElement(name = "flightDuration")
     private String flightDuration;
-    @XmlTransient
+    @XmlElement(name = "price")
     private double price;
     @XmlElement(name = "departureTime")
     private String departureTime;
     @XmlElement(name = "arrivalTime")
     private String arrivalTime;
-    @XmlTransient
+    @XmlElement(name = "arrivalAirport")
     private Airport arrivalAirport;
-    @XmlTransient
+    @XmlElement(name = "departureAirport")
     private Airport departureAirport;
-    @XmlTransient
+    @XmlElement(name = "pilot")
     private Pilot pilot;
     @XmlElement(name = "plane")
     private Plane plane;
-    @XmlTransient
+    @XmlElement(name = "airline")
     private Airline airline;
+    @XmlElement(name = "passengers")
+    private ArrayList<Passenger> passengers = new ArrayList<>();
 
     public Flight() {
     }

@@ -1,9 +1,19 @@
 package jdbc;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "passenger")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Passenger {
 
+    @XmlElement(name = "passengerId")
     private int passengerId;
+    @XmlElement(name = "passengerName")
     private String passengerName;
+    @XmlElement(name = "passengerContactNumber")
     private int passengerContactNumber;
 
     public Passenger(int passengerId, String passengerName, int passengerContactNumber) {

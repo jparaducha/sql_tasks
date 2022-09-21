@@ -1,5 +1,12 @@
 package jdbc;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "plane")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Plane {
 
     public void setYear(int year) {
@@ -14,9 +21,13 @@ public class Plane {
         this.manufacturer = manufacturer;
     }
 
+    @XmlElement(name = "year")
     private int year;
+    @XmlElement(name = "model")
     private String model;
+    @XmlElement(name = "manufacturer")
     private PlaneManufacturer manufacturer;
+    @XmlElement(name = "planeId")
     private int planeId;
 
     public Plane() {

@@ -1,9 +1,19 @@
 package jdbc;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "planeModel")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PlaneModel {
 
+    @XmlElement(name = "modelId")
     private int modelId;
+    @XmlElement(name = "modelName")
     private String modelName;
+    @XmlElement(name = "manufacturer")
     private PlaneManufacturer manufacturer;
 
     public PlaneModel() {

@@ -1,12 +1,19 @@
 package jdbc;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 
+@XmlRootElement(name = "flight")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Country {
 
+    @XmlTransient
     private ArrayList<Airline> airlines = new ArrayList<Airline>();
+    @XmlTransient
     private ArrayList<City> cities = new ArrayList<>();
+    @XmlElement(name = "countryName")
     private String countryName;
+    @XmlElement(name = "countryId")
     private int countryId;
 
     public Country() {

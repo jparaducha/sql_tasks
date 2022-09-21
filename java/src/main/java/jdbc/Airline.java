@@ -1,10 +1,23 @@
 package jdbc;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "flight")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Airline {
 
+    @XmlElement(name = "airlineName")
     private String airlineName;
+    @XmlElement(name = "country")
     private Country country;
+    @XmlElement(name = "airlineId")
     private int airlineId;
+
+    public Airline() {
+    }
 
     public Airline(Country country) {
         this.country = country;
