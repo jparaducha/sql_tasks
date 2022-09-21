@@ -59,11 +59,12 @@ public class Plane {
         return model;
     }
 
+    /*
     @JsonGetter("modelId")
     public int getModelId() {
         return Integer.parseInt(this.model);
     }
-
+*/
     @JsonGetter("manufacturer")
     public PlaneManufacturer getManufacturer() {
         return manufacturer;
