@@ -1,9 +1,14 @@
 package jdbc;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 
-@XmlRootElement(name = "flight")
+@JsonRootName("country")
+@XmlRootElement(name = "country")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Country {
 
@@ -29,10 +34,12 @@ public class Country {
         this.cities = cities;
     }
 
+    @JsonGetter("countryId")
     public int getCountryId() {
         return countryId;
     }
 
+    @JsonSetter("countryId")
     public void setCountryId(int countryId) {
         this.countryId = countryId;
     }
@@ -52,26 +59,32 @@ public class Country {
         return "Country{" + (airlines.size() > 0 ? "airlines=" + airlinesString + ", " : "") + (cities.size() > 0 ? "cities=[" + citiesString + "], " : "") + "country_name='" + countryName + '\'' + '}';
     }
 
+    @JsonGetter("cities")
     public ArrayList<City> getCities() {
         return cities;
     }
 
+    @JsonSetter("cities")
     public void setCities(ArrayList<City> cities) {
         this.cities = cities;
     }
 
+    @JsonGetter("countryName")
     public String getCountryName() {
         return countryName;
     }
 
+    @JsonSetter("countryName")
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
 
+    @JsonGetter("airlines")
     public ArrayList<Airline> getAirlines() {
         return airlines;
     }
 
+    @JsonSetter("airlines")
     public void setAirlines(ArrayList<Airline> airlines) {
         this.airlines = airlines;
     }

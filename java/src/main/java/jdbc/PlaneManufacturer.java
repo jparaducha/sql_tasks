@@ -1,10 +1,15 @@
 package jdbc;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@JsonRootName("planeManufacturer")
 @XmlRootElement(name = "planeManufacturer")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PlaneManufacturer {
@@ -28,18 +33,22 @@ public class PlaneManufacturer {
         return "Plane_Manufacturer{" + "manufacturer_id=" + manufacturerId + ", manufacturer_name='" + manufacturerName + '\'' + '}';
     }
 
+    @JsonGetter("manufacturerId")
     public int getManufacturerId() {
         return manufacturerId;
     }
 
+    @JsonSetter("manufacturerId")
     public void setManufacturerId(int manufacturerId) {
         this.manufacturerId = manufacturerId;
     }
 
+    @JsonGetter("manufacturerName")
     public String getManufacturerName() {
         return manufacturerName;
     }
 
+    @JsonSetter("manufacturerName")
     public void setManufacturerName(String manufacturerName) {
         this.manufacturerName = manufacturerName;
     }

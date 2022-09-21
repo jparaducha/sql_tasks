@@ -1,11 +1,16 @@
 package jdbc;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "flight")
+@JsonRootName("airline")
+@XmlRootElement(name = "airline")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Airline {
 
@@ -34,26 +39,32 @@ public class Airline {
         return "Airline{" + airlineName + '\'' + country.toString() + " airlineId " + airlineId + '}';
     }
 
+    @JsonGetter("airlineName")
     public String getAirlineName() {
         return airlineName;
     }
 
+    @JsonSetter("airlineName")
     public void setAirlineName(String airlineName) {
         this.airlineName = airlineName;
     }
 
+    @JsonGetter("country")
     public Country getCountry() {
         return country;
     }
 
+    @JsonSetter("country")
     public void setCountry(Country country) {
         this.country = country;
     }
 
+    @JsonGetter("airlineId")
     public int getAirlineId() {
         return airlineId;
     }
 
+    @JsonSetter("airlineId")
     public void setAirlineId(int airlineId) {
         this.airlineId = airlineId;
     }

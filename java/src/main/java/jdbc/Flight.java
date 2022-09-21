@@ -1,8 +1,13 @@
 package jdbc;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 
+@JsonRootName("flight")
 @XmlRootElement(name = "flight")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Flight {
@@ -48,58 +53,72 @@ public class Flight {
         this.passengers = passengers;
     }
 
+    @JsonGetter("departureTime")
     public String getDepartureTime() {
         return departureTime;
     }
 
+    @JsonSetter("departureTime")
     public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 
+    @JsonGetter("arrivalTime")
     public String getArrivalTime() {
         return arrivalTime;
     }
 
+    @JsonSetter("arrivalTime")
     public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
+    @JsonGetter("pilot")
     public Pilot getPilot() {
         return pilot;
     }
 
+    @JsonSetter("pilot")
     public void setPilot(Pilot pilot) {
         this.pilot = pilot;
     }
 
+    @JsonGetter("plane")
     public Plane getPlane() {
         return plane;
     }
 
+    @JsonSetter("plane")
     public void setPlane(Plane plane) {
         this.plane = plane;
     }
 
+    @JsonGetter("airline")
     public Airline getAirline() {
         return airline;
     }
 
+    @JsonSetter("airline")
     public void setAirline(Airline airline) {
         this.airline = airline;
     }
 
+    @JsonGetter("flightId")
     public int getFlightId() {
         return flightId;
     }
 
+    @JsonSetter("flightId")
     public void setFlightId(int flightId) {
         this.flightId = flightId;
     }
 
+    @JsonGetter("flightDuration")
     public String getFlightDuration() {
         return flightDuration;
     }
 
+    @JsonSetter("flightDuration")
     public void setFlightDuration(String flightDuration) {
         this.flightDuration = flightDuration;
     }
@@ -109,34 +128,42 @@ public class Flight {
         return "Flight{" + ", flight_id=" + flightId + ", flight_duration='" + flightDuration + '\'' + ", price=" + price + ", departure_time='" + departureTime + '\'' + ", arrival_time='" + arrivalTime + '\'' + ", arrival_airport=" + arrivalAirport + ", departure_airport=" + departureAirport + ", pilot=" + pilot + ", plane=" + plane + ", airline=" + airline + "passengers=" + passengers + '}';
     }
 
+    @JsonGetter("price")
     public double getPrice() {
         return price;
     }
 
+    @JsonSetter("price")
     public void setPrice(double price) {
         this.price = price;
     }
 
+    @JsonGetter("arrivalAirport")
     public Airport getArrivalAirport() {
         return arrivalAirport;
     }
 
+    @JsonSetter("arrivalAirport")
     public void setArrivalAirport(Airport arrivalAirport) {
         this.arrivalAirport = arrivalAirport;
     }
 
+    @JsonGetter("departureAirport")
     public Airport getDepartureAirport() {
         return departureAirport;
     }
 
+    @JsonSetter("departureAirport")
     public void setDepartureAirport(Airport departureAirport) {
         this.departureAirport = departureAirport;
     }
 
+    @JsonGetter("passengers")
     public ArrayList<Passenger> getPassengers() {
         return passengers;
     }
 
+    @JsonSetter("passengers")
     public void setPassengers(ArrayList<Passenger> passengers) {
         this.passengers = passengers;
     }
