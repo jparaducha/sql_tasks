@@ -1,9 +1,6 @@
 package jdbc;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 
 @XmlRootElement(name = "flight")
@@ -30,7 +27,8 @@ public class Flight {
     private Plane plane;
     @XmlElement(name = "airline")
     private Airline airline;
-    @XmlElement(name = "passengers")
+    @XmlElementWrapper(name = "passengers")
+    @XmlElement(name = "passenger")
     private ArrayList<Passenger> passengers = new ArrayList<>();
 
     public Flight() {
