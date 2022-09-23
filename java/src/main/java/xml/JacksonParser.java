@@ -30,7 +30,7 @@ public class JacksonParser {
         city.setCityId(1915);
         city.setCountry(argentina);
 
-        objectMapper.writeValue(new File("java\\src\\main\\resources\\json\\cityTest.json"), city);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("java\\src\\main\\resources\\json\\cityTest.json"), city);
 
         File cityJson = new File("java\\src\\main\\resources\\json\\city.json");
         File flightJson = new File("java\\src\\main\\resources\\json\\flight.json");
@@ -40,7 +40,7 @@ public class JacksonParser {
 
         City city1 = objectMapper.readValue(cityJson, City.class);
 
-        objectMapper.writeValue(new File("java\\src\\main\\resources\\json\\flightTest.json"), flight4);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("java\\src\\main\\resources\\json\\flightTest.json"), flight4);
 
         Flight flight = objectMapper.readValue(flightJson, Flight.class);
 
