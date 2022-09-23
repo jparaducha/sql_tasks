@@ -1,4 +1,4 @@
-package xml;
+package parsers;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

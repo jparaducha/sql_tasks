@@ -1,4 +1,4 @@
-package xml;
+package parsers;
 
 import jdbc.Airport;
 import jdbc.City;

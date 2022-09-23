@@ -1,4 +1,4 @@
-package xml;
+package parsers;
 
 import jdbc.*;
 import org.apache.logging.log4j.LogManager;
@@ -18,8 +18,8 @@ public class DOMParser {
 
     public static void main(String[] args) {
 
-        File xmlFile = new File("java\\src\\main\\resources\\airports.xml");
-        ArrayList<Flight> flights = flightParser("java\\src\\main\\resources\\flight.xml");
+        File xmlFile = new File("java\\src\\main\\resources\\xml\\airports.xml");
+        ArrayList<Flight> flights = flightParser("java\\src\\main\\resources\\xml\\flight.xml");
 
         for (Flight flight : flights) {
             LOGGER.info(flight);

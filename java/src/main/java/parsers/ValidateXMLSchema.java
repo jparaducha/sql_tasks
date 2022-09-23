@@ -1,4 +1,4 @@
-package xml;
+package parsers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,10 +15,10 @@ public class ValidateXMLSchema {
 
     public static void main(String[] args) {
 
-        LOGGER.info("flight.xml validates against flight.xsd?  " + XMLValidator("java\\src\\main\\resources\\flight.xsd", "java\\src\\main\\resources\\flight.xml"));
-        LOGGER.info("airports.xml validates against airport.xsd? " + XMLValidator("java\\src\\main\\resources\\airport.xsd", "java\\src\\main\\resources\\airports.xml"));
-        LOGGER.info("airport2.xml validates against airport.xsd? " + XMLValidator("java\\src\\main\\resources\\airport.xsd", "java\\src\\main\\resources\\airport2.xml"));
-        LOGGER.info("planes.xml validates against planes.xsd? " + XMLValidator("java\\src\\main\\resources\\planes.xsd", "java\\src\\main\\resources\\planes.xml"));
+        LOGGER.info("flight.xml validates against flight.xsd?  " + XMLValidator("java\\src\\main\\resources\\xml\\flight.xsd", "java\\src\\main\\resources\\xml\\flight.xml"));
+        LOGGER.info("airports.xml validates against airport.xsd? " + XMLValidator("java\\src\\main\\resources\\xml\\airport.xsd", "java\\src\\main\\resources\\xml\\airports.xml"));
+        LOGGER.info("airport2.xml validates against airport.xsd? " + XMLValidator("java\\src\\main\\resources\\xml\\airport.xsd", "java\\src\\main\\resources\\xml\\airport2.xml"));
+        LOGGER.info("planes.xml validates against planes.xsd? " + XMLValidator("java\\src\\main\\resources\\xml\\planes.xsd", "java\\src\\main\\resources\\xml\\planes.xml"));
     }
 
     public static boolean XMLValidator(String xsdPath, String xmlPath) {
