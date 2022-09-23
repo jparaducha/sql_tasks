@@ -4,3 +4,4 @@ nb-configuration.xml
 logs/
 java/lib/
 java/target/
+java/java.iml
