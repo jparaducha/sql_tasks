@@ -21,24 +21,18 @@ public class JaxbParser {
 
     private static final Logger LOGGER = LogManager.getLogger(JaxbParser.class);
 
+    private static String basePath = "java\\src\\main\\resources\\xml\\";
+
     public static void main(String[] args) throws JAXBException, IOException {
         try {
+
             objectToXML();
 
-            String newXmlPath = "java\\src\\main\\resources\\airportTest.xml";
+            String newXmlPath = basePath + "airportTest.xml";
 
             Airport unmarshalledAirport = xmlToAirport(newXmlPath);
 
             LOGGER.info(unmarshalledAirport);
-
-        /*
-        //2022-11-04 02:00:00'
-        String pattern = "yyyy-mm-dd HH:mm:ss";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("sp", "AR"));
-        String date = simpleDateFormat.format(new Date());
-        LOGGER.info(date);
-
-         */
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             e.printStackTrace();
@@ -66,19 +60,19 @@ public class JaxbParser {
         JAXBContext flightContext = JAXBContext.newInstance(Flight.class);
         Marshaller flightContextMarshaller = flightContext.createMarshaller();
         flightContextMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        flightContextMarshaller.marshal(flight4, new File("java\\src\\main\\resources\\flightTest.xml"));
+        flightContextMarshaller.marshal(flight4, new File(basePath + "flightTest.xml"));
 
         LOGGER.info(flight4);
 
         JAXBContext cityContext = JAXBContext.newInstance(City.class);
         Marshaller cityMar = cityContext.createMarshaller();
         cityMar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        cityMar.marshal(city, new File("java\\src\\main\\resources\\cityTest.xml"));
+        cityMar.marshal(city, new File(basePath + "cityTest.xml"));
 
         JAXBContext context = JAXBContext.newInstance(Airport.class);
         Marshaller mar = context.createMarshaller();
         mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        mar.marshal(airport, new File("java\\src\\main\\resources\\airportTest.xml"));
+        mar.marshal(airport, new File(basePath + "airportTest.xml"));
     }
 
     public static Airport xmlToAirport(String xmlPath) throws JAXBException, FileNotFoundException {
