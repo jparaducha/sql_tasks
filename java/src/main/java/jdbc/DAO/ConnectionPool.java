@@ -31,7 +31,8 @@ public class ConnectionPool {
             FileInputStream file = new FileInputStream("java\\src\\main\\resources\\jdbc.properties");
             properties.load(file);
         } catch (IOException e) {
-            LOGGER.error("JDBC Properties file not found");
+            throw new RuntimeException("JDBC Properties file not found");
+            //LOGGER.error("JDBC Properties file not found");
         }
 
         DRIVER = properties.getProperty("driver");
