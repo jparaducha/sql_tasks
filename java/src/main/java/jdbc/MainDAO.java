@@ -4,6 +4,10 @@ import jdbc.DAO.mysql.AirportDAO;
 import jdbc.DAO.mysql.CountryDAO;
 import jdbc.DAO.mysql.FlightDAO;
 import jdbc.DAO.mysql.PlaneDAO;
+import jdbc.model.Airport;
+import jdbc.model.Country;
+import jdbc.model.Flight;
+import jdbc.model.Plane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

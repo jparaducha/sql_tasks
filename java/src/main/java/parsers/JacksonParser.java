@@ -2,10 +2,10 @@ package parsers;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jdbc.City;
-import jdbc.Country;
 import jdbc.DAO.mysql.FlightDAO;
-import jdbc.Flight;
+import jdbc.model.City;
+import jdbc.model.Country;
+import jdbc.model.Flight;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

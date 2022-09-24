@@ -1,10 +1,10 @@
 package parsers;
 
-import jdbc.Airport;
-import jdbc.City;
-import jdbc.Country;
 import jdbc.DAO.mysql.FlightDAO;
-import jdbc.Flight;
+import jdbc.model.Airport;
+import jdbc.model.City;
+import jdbc.model.Country;
+import jdbc.model.Flight;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
