@@ -1,8 +1,8 @@
 package jdbc.DAO.mysql;
 
-import jdbc.Airport;
-import jdbc.City;
-import jdbc.Country;
+import jdbc.model.Airport;
+import jdbc.model.City;
+import jdbc.model.Country;
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
 import org.apache.logging.log4j.LogManager;

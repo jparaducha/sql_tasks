@@ -1,6 +1,6 @@
 package parsers;
 
-import jdbc.*;
+import jdbc.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;

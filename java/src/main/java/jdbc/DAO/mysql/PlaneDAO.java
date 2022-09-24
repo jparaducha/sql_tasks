@@ -2,8 +2,8 @@ package jdbc.DAO.mysql;
 
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
-import jdbc.Plane;
-import jdbc.PlaneManufacturer;
+import jdbc.model.Plane;
+import jdbc.model.PlaneManufacturer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

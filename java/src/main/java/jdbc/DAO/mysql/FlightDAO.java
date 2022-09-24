@@ -1,8 +1,8 @@
 package jdbc.DAO.mysql;
 
-import jdbc.*;
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
+import jdbc.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

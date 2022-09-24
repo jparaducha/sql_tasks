@@ -2,7 +2,7 @@ package jdbc.DAO.mysql;
 
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
-import jdbc.PilotLicense;
+import jdbc.model.PilotLicense;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

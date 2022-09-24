@@ -1,7 +1,7 @@
 package jdbc.DAO.mysql;
 
-import jdbc.Airline;
-import jdbc.Country;
+import jdbc.model.Airline;
+import jdbc.model.Country;
 import jdbc.DAO.IBaseDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
