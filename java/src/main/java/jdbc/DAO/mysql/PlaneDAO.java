@@ -19,7 +19,7 @@ public class PlaneDAO implements IBaseDAO<Plane> {
     private final String GET_PLANE_BY_ID = "SELECT * FROM planes LEFT JOIN plane_models ON planes.modelId = plane_models.model_id LEFT JOIN plane_manufacturers ON plane_models.manufacturer = plane_manufacturers.manufacturer_id  WHERE plane_id = ?";
     private final String GET_ALL_PLANES = "SELECT * FROM planes INNER JOIN plane_models ON planes.modelId = plane_models.model_id INNER JOIN plane_manufacturers ON plane_models.manufacturer = plane_manufacturers.manufacturer_id LEFT JOIN flights ON planes.plane_id = flights.planeId ORDER BY plane_id";
     private final String DELETE_BY_ID = "DELETE FROM planes WHERE plane_id = ?";
-    private final String UPDATE_PLANE = "UPDATE planes SET year =  ? , modelId = ?";
+    private final String UPDATE_PLANE = "UPDATE planes SET year =  ? , modelId = ? WHERE plane_id = ?";
     private final String DELETE_ALL = "DELETE FROM planes";
     private final Logger LOGGER = LogManager.getLogger(PlaneDAO.class);
 
@@ -96,7 +96,7 @@ public class PlaneDAO implements IBaseDAO<Plane> {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(INSERT_PLANE);
             preparedStatement.setInt(1, object.getYear());
-            preparedStatement.setString(2, object.getModel());
+            preparedStatement.setString(2, object.getModelId());
             int rs = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
@@ -140,8 +140,9 @@ public class PlaneDAO implements IBaseDAO<Plane> {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(UPDATE_PLANE);
 
-            preparedStatement.setInt(1, object.getPlaneId());
-            preparedStatement.setString(2, object.getModel());
+            preparedStatement.setInt(1, object.getYear());
+            preparedStatement.setString(2, object.getModelId());
+            preparedStatement.setInt(3, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);

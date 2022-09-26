@@ -1,5 +1,7 @@
 package jdbc.DAO;
 
+import org.apache.ibatis.annotations.Param;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ public interface IBaseDAO<T> {
 
     void deleteById(int id) throws SQLException;
 
-    void updateRow(int id, T object) throws SQLException;
+    void updateRow(@Param("id") int id, @Param("object") T object) throws SQLException;
 
     void deleteAll() throws SQLException;
 }

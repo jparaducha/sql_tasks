@@ -18,8 +18,8 @@ public class Plane {
 
     @XmlElement(name = "year")
     private int year;
-    @XmlElement(name = "model")
-    private String model;
+    @XmlElement(name = "modelId")
+    private String modelId;
     @XmlElement(name = "manufacturer")
     private PlaneManufacturer manufacturer;
     @XmlElement(name = "planeId")
@@ -29,16 +29,16 @@ public class Plane {
 
     }
 
-    public Plane(int id, int year, String model, PlaneManufacturer manufacturer) {
+    public Plane(int id, int year, String modelId, PlaneManufacturer manufacturer) {
         this.planeId = id;
         this.year = year;
-        this.model = model;
+        this.modelId = modelId;
         this.manufacturer = manufacturer;
     }
 
     @Override
     public String toString() {
-        return "Plane{" + "year=" + year + ", model='" + model + '\'' + ", manufacturer='" + manufacturer + '\'' + ", planeId=" + planeId + '}';
+        return "Plane{" + "year=" + year + ", model='" + modelId + '\'' + ", manufacturer='" + manufacturer + '\'' + ", planeId=" + planeId + '}';
     }
 
     @JsonGetter("planeId")
@@ -56,9 +56,9 @@ public class Plane {
         return year;
     }
 
-    @JsonGetter("model")
-    public String getModel() {
-        return model;
+    @JsonGetter("modelId")
+    public String getModelId() {
+        return modelId;
     }
 
     /*
@@ -74,7 +74,7 @@ public class Plane {
 
     @JsonSetter("modelId")
     public void setModelId(int i) {
-        this.model = String.valueOf(i);
+        this.modelId = String.valueOf(i);
     }
 
     @JsonSetter("year")
@@ -82,9 +82,9 @@ public class Plane {
         this.year = year;
     }
 
-    @JsonSetter("model")
-    public void setModel(String model) {
-        this.model = model;
+    @JsonSetter("modelId")
+    public void setModelId(String modelId) {
+        this.modelId = modelId;
     }
 
     @JsonSetter("manufacturer")

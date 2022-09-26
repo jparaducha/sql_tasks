@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <properties resource="jdbc.properties"/>
+    <typeAliases>
+        <typeAlias alias="Plane" type="jdbc.model.Plane"/>
+        <!--
+        <typeAlias alias="Architect" type="com.remo.buildings.model.Architect"/>
+        <typeAlias alias="Building" type="com.remo.buildings.model.Building"/>
+        <typeAlias alias="Constructor" type="com.remo.buildings.model.Constructor"/>
+        <typeAlias alias="Customer" type="com.remo.buildings.model.Customer"/>
+        <typeAlias alias="DriveLicense" type="com.remo.buildings.model.DriveLicense"/>
+        <typeAlias alias="Employee" type="com.remo.buildings.model.Employee"/>
+        <typeAlias alias="House" type="com.remo.buildings.model.House"/>
+        <typeAlias alias="Manager" type="com.remo.buildings.model.Manager"/>
+        <typeAlias alias="Work" type="com.remo.buildings.model.Work"/>
+        -->
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${user}"/>
+                <property name="password" value="${pass}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mappers/PlaneMapper.xml"/>
+        <!--
+        <mapper resource="mappers/ArchitectMapper.xml"/>
+        <mapper resource="mappers/BuildingMapper.xml"/>
+        <mapper resource="mappers/ConstructorMapper.xml"/>
+        <mapper resource="mappers/CustomerMapper.xml"/>
+        <mapper resource="mappers/DriveLicenseMapper.xml"/>
+        <mapper resource="mappers/EmployeeMapper.xml"/>
+        <mapper resource="mappers/HouseMapper.xml"/>
+        <mapper resource="mappers/ManagerMapper.xml"/>
+        <mapper resource="mappers/WorkMapper.xml"/>
+        -->
+    </mappers>
+</configuration>

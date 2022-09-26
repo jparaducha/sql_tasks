@@ -160,7 +160,7 @@ public class DOMParser {
                                             plane.setPlaneId(Integer.parseInt(planeNode.getTextContent()));
                                             break;
                                         case "model":
-                                            plane.setModel(planeNode.getTextContent());
+                                            plane.setModelId(planeNode.getTextContent());
                                             break;
                                         case "year":
                                             plane.setYear(Integer.parseInt(planeNode.getTextContent()));
