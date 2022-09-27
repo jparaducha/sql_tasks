@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="jdbc.DAO.IBaseDAO">
+<mapper namespace="jdbc.DAO.IPlaneDAO">
     <resultMap id="PlaneMap" type="Plane">
         <id property="planeId" column="plane_id"/>
         <result property="year" column="year"/>
         <result property="modelId" column="model_id"/>
     </resultMap>
 
-    <select id="getById" parameterType="int" resultMap="PlaneMap">
+    <select id="getPlaneById" parameterType="int" resultMap="PlaneMap">
         SELECT *
         FROM planes as p
         LEFT JOIN plane_models as pm
@@ -19,27 +19,31 @@
         WHERE p.plane_id=#{id}
     </select>
 
-    <select id="getAll" resultMap="PlaneMap">
+    <select id="getAllPlanes" resultMap="PlaneMap">
         SELECT *
         FROM planes as p
         LEFT JOIN plane_models as pm
         ON p.modelId =pm.model_id
     </select>
-    <insert id="insertRow" parameterType="Plane">
+    <insert id="insertPlane" parameterType="Plane">
         INSERT INTO planes
         ( year, modelId)
         VALUES ( #{year}, #{modelId})
     </insert>
-    <update id="updateRow" parameterType="map">
+    <update id="updatePlane" parameterType="map">
         UPDATE planes SET
         year = #{object.year},
         modelId = #{object.modelId}
         WHERE plane_id = #{id}
     </update>
 
-    <delete id="deleteById" parameterType="int">
+    <delete id="deletePlaneById" parameterType="int">
         DELETE FROM planes
         WHERE plane_id = #{id}
+    </delete>
+
+    <delete id="deleteAllPlanes">
+        DELETE FROM planes
     </delete>
 
 </mapper>

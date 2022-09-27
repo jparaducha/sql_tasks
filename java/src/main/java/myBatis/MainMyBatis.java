@@ -1,6 +1,6 @@
 package myBatis;
 
-import jdbc.DAO.IBaseDAO;
+import jdbc.DAO.IPlaneDAO;
 import jdbc.DAO.IPlaneModelDAO;
 import jdbc.model.Plane;
 import jdbc.model.PlaneModel;
@@ -27,8 +27,8 @@ public class MainMyBatis {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             SqlSession session = sqlSessionFactory.openSession();
 
-            IBaseDAO<Plane> planeMapper = session.getMapper(IBaseDAO.class);
-            Plane plane = planeMapper.getById(1);
+            IPlaneDAO planeMapper = session.getMapper(IPlaneDAO.class);
+            Plane plane = planeMapper.getPlaneById(1);
 
             LOGGER.info("plane: " + plane);
 
@@ -36,13 +36,13 @@ public class MainMyBatis {
             testPlane.setModelId(3);
             testPlane.setYear((int) (Math.random() * (100) + 4000));
 
-            planeMapper.insertRow(testPlane);
+            planeMapper.insertPlane(testPlane);
 
             testPlane.setYear(2025);
 
-            planeMapper.updateRow(63, testPlane);
+            planeMapper.updatePlane(63, testPlane);
 
-            ArrayList<Plane> planes = planeMapper.getAll();
+            ArrayList<Plane> planes = planeMapper.getAllPlanes();
 
             for (Plane planeT : planes) {
                 LOGGER.info(planeT);
