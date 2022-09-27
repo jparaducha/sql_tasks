@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jdbc.DAO.IPilotDAO">
+    <resultMap id="PilotMap" type="Pilot">
+        <id property="pilotId" column="id_pilot"/>
+        <result property="pilotName" column="pilot_name"/>
+        <result property="pilotAge" column="pilot_age"/>
+        <result property="license.licenseId" column="licenseId"/>
+        <result property="license.issuedOn" column="issued_on"/>
+    </resultMap>
+
+    <select id="getPilotById" parameterType="int" resultMap="PilotMap">
+        SELECT *
+        FROM pilots
+        JOIN pilot_licenses
+        ON pilots.licenseId = pilot_licenses.license_id
+        WHERE id_pilot=#{id}
+    </select>
+
+    <select id="getAllPilots" resultMap="PilotMap">
+        SELECT *
+        FROM pilots
+    </select>
+    <insert id="insertPilot" parameterType="Pilot">
+        INSERT INTO pilots
+        ( pilot_name,pilot_age, licenseId)
+        VALUES ( #{pilotName}, #{pilotAge}, #{license.licenseId})
+    </insert>
+    <update id="updatePilot" parameterType="map">
+        UPDATE pilots SET
+        pilot_name = #{object.pilotName},
+        pilot_age = #{object.pilotAge},
+        licenseId = #{object.license.licenseId}
+        WHERE id_pilot = #{id}
+    </update>
+
+    <delete id="deletePilotById" parameterType="int">
+        DELETE FROM pilots
+        WHERE id_pilot = #{id}
+    </delete>
+
+    <delete id="deleteAllPilots">
+        DELETE FROM pilots
+    </delete>
+
+</mapper>

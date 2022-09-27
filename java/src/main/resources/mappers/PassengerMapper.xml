@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jdbc.DAO.IPassengerDAO">
+    <resultMap id="PassengerMap" type="Passenger">
+        <id property="passengerId" column="passenger_id"/>
+        <result property="passengerName" column="passenger_name"/>
+        <result property="passengerContactNumber" column="passenger_contact_number"/>
+    </resultMap>
+
+    <select id="getPassengerById" parameterType="int" resultMap="PassengerMap">
+        SELECT *
+        FROM passengers
+        WHERE passenger_id=#{id}
+    </select>
+
+    <select id="getAllPassengers" resultMap="PassengerMap">
+        SELECT *
+        FROM passengers
+    </select>
+    <insert id="insertPassenger" parameterType="Passenger">
+        INSERT INTO passengers
+        ( passenger_name,passenger_contact_number)
+        VALUES ( #{passengerName}, #{passengerContactNumber})
+    </insert>
+    <update id="updatePassenger" parameterType="map">
+        UPDATE passengers SET
+        passenger_name = #{object.passengerName},
+        passenger_contact_number = #{object.passengerContactNumber}
+        WHERE passenger_id = #{id}
+    </update>
+
+    <delete id="deletPassengerById" parameterType="int">
+        DELETE FROM passengers
+        WHERE passenger_id = #{id}
+    </delete>
+
+    <delete id="deleteAllPassengers">
+        DELETE FROM passengers
+    </delete>
+
+</mapper>

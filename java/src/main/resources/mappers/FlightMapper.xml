@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jdbc.DAO.IFlightDAO">
+
+    <resultMap id="FlightMap" type="Flight">
+        <id property="flightId" column="flight_id"/>
+        <result property="flightDuration" column="flight_duration"/>
+        <result property="price" column="price"/>
+        <result property="departureTime" column="departure_time"/>
+        <result property="arrivalTime" column="arrival_time"/>
+        <result property="plane.planeId" column="planes.planeId"/>
+        <result property="plane.year" column="planes.year"/>
+        <result property="airline.airlineId" column="airlines.airline_id"/>
+        <result property="pilot.pilotId" column="pilots.id_pilot"/>
+        <!--
+        <result property="plane.manufacturer.manufacturerName" column="plane_manufacturers.manufacturer_name"/>
+        <result property="airline.airlineId" column="airlineId"/>
+        <result property="pilot.pilotId" column="pilotId"/>
+        <result property="departureAirport.airportName" column="a1.airport_name"/>
+        <result property="arrivalAirport.airportName" column="a2.airport_name"/>
+        <result property="airline.airlineName" column="airlines.airline_name"/>
+        <result property="plane.year" column="planes.year"/>
+        <result property="plane.planeId" column="planes.plane_id"/>
+        -->
+    </resultMap>
+
+
+    <select id="getFlightById" parameterType="int" resultMap="FlightMap">
+        SELECT *
+        FROM flights
+        JOIN planes ON planes.plane_id = flights.planeId
+        JOIN plane_models ON planes.modelId = plane_models.model_id
+        JOIN plane_manufacturers ON plane_models.manufacturer = plane_manufacturers.manufacturer_id
+        <!--
+        LEFT JOIN airport_flights af1 ON flights.flight_id = af1.flightId
+        LEFT JOIN airports a1 ON af1.departure_airportId = a1.airport_id
+        LEFT JOIN airport_flights af2 ON flights.flight_id = af2.flightId
+        LEFT JOIN airports a2 ON af2.arrival_airportId = a2.airport_id
+        LEFT JOIN airlines ON airlines.airline_id = flights.airlineId
+        -->
+        WHERE flight_id =#{id}
+    </select>
+
+
+    <select id="getAllFlights" resultMap="FlightMap">
+        SELECT *
+        FROM flights
+        LEFT JOIN airport_flights af1 ON flights.flight_id = af1.flightId
+        LEFT JOIN airports a1 ON af1.departure_airportId = a1.airport_id
+        LEFT JOIN airport_flights af2 ON flights.flight_id = af2.flightId
+        LEFT JOIN airports a2 ON af2.arrival_airportId = a2.airport_id
+    </select>
+    <insert id="insertFlight" parameterType="Flight">
+        INSERT INTO flights
+        ( airlineId,pilotId, planeId, price, departure_time, arrival_time, flight_duration)
+        VALUES ( #{airline.airlineId}, #{pilot.pilotId}, #{plane.planeId}, #{price}, #{departureTime}, #{arrivalTime},
+        #{flightDuration})
+    </insert>
+    <update id="updateFlight" parameterType="map">
+        UPDATE flights SET
+        airlineId = #{object.airline.airlineId},
+        pilotId = #{object.pilot.pilotId},
+        planeId = #{object.plane.planeId},
+        price = #{object.price},
+        departure_time = #{object.departureTime},
+        arrival_time = #{object.arrivalTime},
+        flight_duration = #{object.flightDuration}
+        WHERE flight_id = #{id}
+    </update>
+
+    <delete id="deleteFlightById" parameterType="int">
+        DELETE FROM flights
+        WHERE flight_id = #{id}
+    </delete>
+
+    <delete id="deleteAllFlights">
+        DELETE FROM flights
+    </delete>
+
+
+</mapper>

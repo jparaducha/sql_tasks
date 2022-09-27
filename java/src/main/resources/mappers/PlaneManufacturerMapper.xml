@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jdbc.DAO.IPlaneManufacturerDAO">
+    <resultMap id="PlaneManufacturerMap" type="PlaneManufacturer">
+        <id property="id" column="id"/>
+        <result property="manufacturerName" column="manufacturer_name"/>
+        <result property="manufacturerId" column="manufacturer_id"/>
+    </resultMap>
+
+    <select id="getManufacturerById" parameterType="int" resultMap="PlaneManufacturerMap">
+        SELECT *
+        FROM plane_manufacturers as pm
+        WHERE manufacturer_id=#{id}
+    </select>
+
+
+    <select id="getAllManufacturers" resultMap="PlaneManufacturerMap">
+        SELECT *
+        FROM plane_manufacturers
+    </select>
+    <insert id="insertManufacturer" parameterType="PlaneManufacturer">
+        INSERT INTO plane_manufacturers
+        ( manufacturer_name, manufacturer_id)
+        VALUES ( #{manufacturerName}, #{manufacturerId})
+    </insert>
+    <update id="updateManufacturer" parameterType="map">
+        UPDATE plane_manufacturers SET
+        manufacturer_name = #{object.manufacturerName},
+        manufacturer_id = #{object.manufacturerId}
+        WHERE manufacturer_id = #{id}
+    </update>
+
+    <delete id="deleteManufacturerById" parameterType="int">
+        DELETE FROM plane_manufacturers
+        WHERE manufacturer_id = #{id}
+    </delete>
+
+    <delete id="deleteAllManufacturers">
+        DELETE FROM plane_manufacturers
+    </delete>
+
+</mapper>

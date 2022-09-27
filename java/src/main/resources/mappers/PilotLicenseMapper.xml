@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jdbc.DAO.IPilotLicenseDAO">
+    <resultMap id="PilotLicenseMap" type="PilotLicense">
+        <id property="licenseId" column="license_id"/>
+        <result property="issuedOn" column="issued_on"/>
+        <result property="expires" column="expires"/>
+    </resultMap>
+
+    <select id="getLicenseById" parameterType="int" resultMap="PilotLicenseMap">
+        SELECT *
+        FROM pilot_licenses
+        WHERE license_id=#{id}
+    </select>
+
+    <select id="getAllLicenses" resultMap="PilotLicenseMap">
+        SELECT *
+        FROM pilot_licenses
+    </select>
+    <insert id="insertLicense" parameterType="PilotLicense">
+        INSERT INTO pilot_licenses
+        ( issued_on,expires, pilotId)
+        VALUES ( #{issuedOn}, #{expires}, #{pilotId})
+    </insert>
+    <update id="updateLicense" parameterType="map">
+        UPDATE pilot_licenses SET
+        issued_on = #{object.issuedOn},
+        expires = #{object.expires},
+        pilotId = #{object.pilotId}
+        WHERE license_id = #{id}
+    </update>
+
+    <delete id="deleteLicenseById" parameterType="int">
+        DELETE FROM pilot_licenses
+        WHERE license_id = #{id}
+    </delete>
+
+    <delete id="deleteAllLicenses">
+        DELETE FROM pilot_licenses
+    </delete>
+
+</mapper>

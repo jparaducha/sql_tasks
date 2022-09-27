@@ -1,8 +1,10 @@
 package myBatis;
 
 import jdbc.DAO.IPlaneDAO;
+import jdbc.DAO.IPlaneManufacturerDAO;
 import jdbc.DAO.IPlaneModelDAO;
 import jdbc.model.Plane;
+import jdbc.model.PlaneManufacturer;
 import jdbc.model.PlaneModel;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -53,6 +55,28 @@ public class MainMyBatis {
 
             LOGGER.info("plane model: " + testModel);
 
+            IPlaneManufacturerDAO manufacturerMapper = session.getMapper(IPlaneManufacturerDAO.class);
+
+            PlaneManufacturer testManufacturer = manufacturerMapper.getManufacturerById(2);
+
+            LOGGER.info(testManufacturer);
+/*
+            IPilotDAO pilotMapper = session.getMapper(IPilotDAO.class);
+            Pilot testPilot = pilotMapper.getPilotById(1);
+            LOGGER.info(testPilot);
+            Pilot newPilot = new Pilot(77, "Test Pilot", 77, new PilotLicenseDAO().getById(1));
+
+            pilotMapper.insertPilot(newPilot);
+
+            IFlightDAO flightMapper = session.getMapper(IFlightDAO.class);
+            Flight testFlight = flightMapper.getFlightById(2);
+            LOGGER.info(testFlight);
+            ArrayList<Flight> testFlights = flightMapper.getAllFlights();
+
+            for (Flight flight : testFlights) {
+                LOGGER.info(flight);
+            }
+*/
             session.commit();
 
             session.close();

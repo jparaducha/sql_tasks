@@ -8,6 +8,15 @@
     <typeAliases>
         <typeAlias alias="Plane" type="jdbc.model.Plane"/>
         <typeAlias alias="PlaneModel" type="jdbc.model.PlaneModel"/>
+        <typeAlias alias="PlaneManufacturer" type="jdbc.model.PlaneManufacturer"/>
+        <typeAlias alias="Country" type="jdbc.model.Country"/>
+        <typeAlias alias="City" type="jdbc.model.City"/>
+        <typeAlias alias="Airport" type="jdbc.model.Airport"/>
+        <typeAlias alias="PilotLicense" type="jdbc.model.PilotLicense"/>
+        <typeAlias alias="Pilot" type="jdbc.model.Pilot"/>
+        <typeAlias alias="Airline" type="jdbc.model.Airline"/>
+        <typeAlias alias="Passenger" type="jdbc.model.Passenger"/>
+        <typeAlias alias="Flight" type="jdbc.model.Flight"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -23,6 +32,15 @@
     <mappers>
         <mapper resource="mappers/PlaneMapper.xml"/>
         <mapper resource="mappers/PlaneModelMapper.xml"/>
+        <mapper resource="mappers/PlaneManufacturerMapper.xml"/>
+        <mapper resource="mappers/CountryMapper.xml"/>
+        <mapper resource="mappers/CityMapper.xml"/>
+        <mapper resource="mappers/AirportMapper.xml"/>
+        <mapper resource="mappers/PilotLicenseMapper.xml"/>
+        <mapper resource="mappers/PilotMapper.xml"/>
+        <mapper resource="mappers/AirlineMapper.xml"/>
+        <mapper resource="mappers/PassengerMapper.xml"/>
+        <mapper resource="mappers/FlightMapper.xml"/>
         <!--
         -->
     </mappers>

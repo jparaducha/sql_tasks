@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jdbc.DAO.IAirlineDAO">
+    <resultMap id="AirlineMap" type="Airline">
+        <id property="airlineId" column="airline_id"/>
+        <result property="airlineName" column="airline_name"/>
+        <result property="country.countryId" column="countryId"/>
+    </resultMap>
+
+    <select id="getAirlineById" parameterType="int" resultMap="AirlineMap">
+        SELECT *
+        FROM airlines
+        WHERE airline_id=#{id}
+    </select>
+
+    <select id="getAllAirlines" resultMap="AirlineMap">
+        SELECT *
+        FROM airlines
+    </select>
+    <insert id="insertAirline" parameterType="Airline">
+        INSERT INTO airlines
+        ( airline_name,countryId)
+        VALUES ( #{airlineName}, #{country.countryId})
+    </insert>
+    <update id="updateAirline" parameterType="map">
+        UPDATE airlines SET
+        airline_name = #{object.airlineName},
+        countryId = #{object.country.countryId}
+        WHERE airline_id = #{id}
+    </update>
+
+    <delete id="deletAirlineById" parameterType="int">
+        DELETE FROM airlines
+        WHERE airline_id = #{id}
+    </delete>
+
+    <delete id="deleteAllAirlines">
+        DELETE FROM airlines
+    </delete>
+
+</mapper>

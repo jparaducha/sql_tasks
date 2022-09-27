@@ -23,4 +23,32 @@
     </select>
 
 
+    <select id="getAllModels" resultMap="PlaneModelMap">
+        SELECT *
+        FROM plane_models
+        LEFT JOIN plane_manufacturers as pm
+        ON plane_models.manufacturer =pm.manufacturer_id
+    </select>
+    <insert id="insertModel" parameterType="PlaneModel">
+        INSERT INTO plane_models
+        ( model_id , model_name)
+        VALUES (#{modelId}, #{model_name})
+    </insert>
+    <update id="updateModel" parameterType="map">
+        UPDATE planes SET
+        model_id = #{object.modelId}
+        model_name = #{object.model_name}
+        WHERE plane_id = #{id}
+    </update>
+
+    <delete id="deleteModelById" parameterType="int">
+        DELETE FROM plane_models
+        WHERE model_id = #{id}
+    </delete>
+
+    <delete id="deleteAllModels">
+        DELETE FROM plane_models
+    </delete>
+
+
 </mapper>

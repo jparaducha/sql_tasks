@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jdbc.DAO.IAirportDAO">
+    <resultMap id="AirportMap" type="Airport">
+        <id property="airportId" column="airport_id"/>
+        <result property="airportName" column="airport_name"/>
+        <result property="iataCode" column="IATA_code"/>
+    </resultMap>
+
+    <select id="getAirportById" parameterType="int" resultMap="AirportMap">
+        SELECT *
+        FROM airports
+        WHERE airport_id=#{id}
+    </select>
+
+    <select id="getAllAirports" resultMap="AirportMap">
+        SELECT *
+        FROM airports
+    </select>
+    <insert id="insertAirport" parameterType="Airport">
+        INSERT INTO airports
+        ( airport_name,IATA_code, cityId)
+        VALUES ( #{airportName}, #{iataCode}, #{city.cityId})
+    </insert>
+    <update id="updateAirport" parameterType="map">
+        UPDATE airports SET
+        airport_name = #{object.airportName},
+        IATA_code = #{object.iataCode}
+        WHERE airport_id = #{id}
+    </update>
+
+    <delete id="deleteAirportById" parameterType="int">
+        DELETE FROM airports
+        WHERE airport_id = #{id}
+    </delete>
+
+    <delete id="deleteAllAirports">
+        DELETE FROM airports
+    </delete>
+
+</mapper>
