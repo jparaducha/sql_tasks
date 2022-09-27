@@ -95,7 +95,7 @@ public class PlaneModelDAO implements IBaseDAO<PlaneModel> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(INSERT_MODEL);
-            preparedStatement.setString(1, object.getModelName());
+            preparedStatement.setString(1, object.getModel_name());
             preparedStatement.setInt(2, object.getManufacturer().getManufacturerId());
 
             preparedStatement.executeUpdate();
@@ -142,7 +142,7 @@ public class PlaneModelDAO implements IBaseDAO<PlaneModel> {
             connection = ConnectionPool.getInstance().getConnection();
 
             preparedStatement = connection.prepareStatement(UPDATE_MODEL);
-            preparedStatement.setString(1, object.getModelName());
+            preparedStatement.setString(1, object.getModel_name());
             preparedStatement.setInt(2, object.getManufacturer().getManufacturerId());
             preparedStatement.setInt(3, id);
 
