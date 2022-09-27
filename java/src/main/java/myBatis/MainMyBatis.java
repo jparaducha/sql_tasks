@@ -1,7 +1,9 @@
 package myBatis;
 
 import jdbc.DAO.IBaseDAO;
+import jdbc.DAO.IPlaneModelDAO;
 import jdbc.model.Plane;
+import jdbc.model.PlaneModel;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,7 +30,7 @@ public class MainMyBatis {
             IBaseDAO<Plane> planeMapper = session.getMapper(IBaseDAO.class);
             Plane plane = planeMapper.getById(1);
 
-            System.out.println("plane: " + plane);
+            LOGGER.info("plane: " + plane);
 
             Plane testPlane = new Plane();
             testPlane.setModelId(3);
@@ -45,6 +47,11 @@ public class MainMyBatis {
             for (Plane planeT : planes) {
                 LOGGER.info(planeT);
             }
+
+            IPlaneModelDAO<PlaneModel> planeModelMapper = session.getMapper(IPlaneModelDAO.class);
+            PlaneModel testModel = planeModelMapper.getPlaneModelById(2);
+
+            LOGGER.info("plane model: " + testModel);
 
             session.commit();
 

@@ -19,7 +19,7 @@ public class PlaneModel {
     @XmlElement(name = "modelId")
     private int modelId;
     @XmlElement(name = "modelName")
-    private String modelName;
+    private String model_name;
     @XmlElement(name = "manufacturer")
     private PlaneManufacturer manufacturer;
 
@@ -27,9 +27,14 @@ public class PlaneModel {
 
     }
 
-    public PlaneModel(int modelId, String modelName, PlaneManufacturer manufacturer) {
+    @Override
+    public String toString() {
+        return "PlaneModel{" + "modelId=" + modelId + ", model_name='" + model_name + '\'' + ", manufacturer=" + manufacturer + '}';
+    }
+
+    public PlaneModel(int modelId, String model_name, PlaneManufacturer manufacturer) {
         this.modelId = modelId;
-        this.modelName = modelName;
+        this.model_name = model_name;
         this.manufacturer = manufacturer;
     }
 
@@ -44,13 +49,13 @@ public class PlaneModel {
     }
 
     @JsonGetter("modelName")
-    public String getModelName() {
-        return modelName;
+    public String getModel_name() {
+        return model_name;
     }
 
     @JsonSetter("modelName")
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
+    public void setModel_name(String model_name) {
+        this.model_name = model_name;
     }
 
     @JsonGetter("manufacturer")
