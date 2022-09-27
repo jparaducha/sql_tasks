@@ -48,7 +48,7 @@ public class MainMyBatis {
                 LOGGER.info(planeT);
             }
 
-            IPlaneModelDAO<PlaneModel> planeModelMapper = session.getMapper(IPlaneModelDAO.class);
+            IPlaneModelDAO planeModelMapper = session.getMapper(IPlaneModelDAO.class);
             PlaneModel testModel = planeModelMapper.getPlaneModelById(2);
 
             LOGGER.info("plane model: " + testModel);
