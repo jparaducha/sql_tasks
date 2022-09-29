@@ -22,9 +22,9 @@ public class Passenger {
     private String passengerName;
 
     @XmlElement(name = "passengerContactNumber")
-    private int passengerContactNumber;
+    private String passengerContactNumber;
 
-    public Passenger(int passengerId, String passengerName, int passengerContactNumber) {
+    public Passenger(int passengerId, String passengerName, String passengerContactNumber) {
         this.passengerId = passengerId;
         this.passengerName = passengerName;
         this.passengerContactNumber = passengerContactNumber;
@@ -65,12 +65,12 @@ public class Passenger {
     }
 
     @JsonGetter("passengerContactNumber")
-    public int getPassengerContactNumber() {
+    public String getPassengerContactNumber() {
         return passengerContactNumber;
     }
 
     @JsonSetter("passengerContactNumber")
-    public void setPassengerContactNumber(int passengerContactNumber) {
+    public void setPassengerContactNumber(String passengerContactNumber) {
         this.passengerContactNumber = passengerContactNumber;
     }
 }
