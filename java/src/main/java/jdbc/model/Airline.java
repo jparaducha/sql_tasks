@@ -38,7 +38,8 @@ public class Airline {
 
     @Override
     public String toString() {
-        return "Airline{" + airlineName + '\'' + country.toString() + " airlineId " + airlineId + '}';
+        String result = country != null ? "Airline{" + airlineName + '\'' + country.toString() + " airlineId " + airlineId + '}' : "Airline{" + airlineName + " airlineId " + airlineId + '}';
+        return result;
     }
 
     @JsonGetter("airlineName")
