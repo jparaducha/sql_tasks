@@ -10,47 +10,180 @@
         <result property="price" column="price"/>
         <result property="departureTime" column="departure_time"/>
         <result property="arrivalTime" column="arrival_time"/>
-        <result property="plane.planeId" column="planes.planeId"/>
-        <result property="plane.year" column="planes.year"/>
-        <result property="airline.airlineId" column="airlines.airline_id"/>
-        <result property="pilot.pilotId" column="pilots.id_pilot"/>
-        <!--
-        <result property="plane.manufacturer.manufacturerName" column="plane_manufacturers.manufacturer_name"/>
-        <result property="airline.airlineId" column="airlineId"/>
-        <result property="pilot.pilotId" column="pilotId"/>
-        <result property="departureAirport.airportName" column="a1.airport_name"/>
-        <result property="arrivalAirport.airportName" column="a2.airport_name"/>
-        <result property="airline.airlineName" column="airlines.airline_name"/>
-        <result property="plane.year" column="planes.year"/>
-        <result property="plane.planeId" column="planes.plane_id"/>
-        -->
+
+        <association property="airline" resultMap="AirlineMap"/>
+        <association property="pilot" resultMap="PilotMap"/>
+        <association property="arrivalAirport" resultMap="AirportMap" columnPrefix="a2_"/>
+        <association property="departureAirport" resultMap="AirportMap" columnPrefix="a1_"/>
+        <association property="plane" resultMap="PlaneMap"/>
+
+
+        <collection property="passengers" ofType="Passenger">
+            <id property="passengerId" column="passenger_id"/>
+            <result property="passengerName" column="passenger_name"/>
+            <result property="passengerContactNumber" column="passenger_contact_number"/>
+        </collection>
+
     </resultMap>
 
 
-    <select id="getFlightById" parameterType="int" resultMap="FlightMap">
+    <!--##  AIRLINE ##-->
+    <!--##############-->
+    <resultMap id="AirlineMap" type="Airline">
+        <id property="airlineId" column="airline_id"/>
+        <result property="airlineName" column="airline_name"/>
+    </resultMap>
+
+
+    <select id="selectAirline" resultType="Airline">
+        SELECT * FROM airlines WHERE airline_id = #{id}
+    </select>
+
+
+    <!--#### PILOT ###-->
+    <!--##############-->
+    <resultMap id="PilotMap" type="Pilot">
+        <id property="pilotId" column="id_pilot"/>
+        <result property="pilotName" column="pilot_name"/>
+        <result property="pilotAge" column="pilot_age"/>
+
+        <association property="license" resultMap="PilotLicenseMap"/>
+    </resultMap>
+
+    <select id="selectPilot" resultType="Pilot">
         SELECT *
+        FROM pilots
+        JOIN pilot_licenses
+        ON pilots.licenseId = pilot_licenses.license_id
+        WHERE id_pilot=#{id}
+    </select>
+
+
+    <!--#### PILOT LICENSE ###-->
+    <!--######################-->
+
+    <resultMap id="PilotLicenseMap" type="PilotLicense">
+        <id property="licenseId" column="license_id"/>
+        <result property="issuedOn" column="issued_on"/>
+        <result property="expires" column="expires"/>
+    </resultMap>
+
+
+    <!--#### AIRPORT ###-->
+    <!--################-->
+
+    <resultMap id="AirportMap" type="Airport">
+        <id property="airportId" column="airport_id"/>
+        <result property="airportName" column="airport_name"/>
+        <result property="iataCode" column="IATA_code"/>
+
+        <association property="city" resultMap="CityMap"/>
+    </resultMap>
+
+    <select id="selectAirport" parameterType="int" resultType="Airport">
+        SELECT *
+        FROM airports
+        JOIN cities ON airports.cityId = cities.city_id
+        WHERE airport_id=#{id}
+    </select>
+
+    <!--#### CITY ###-->
+    <!--#############-->
+
+    <resultMap id="CityMap" type="City">
+        <id property="cityId" column="city_id"/>
+        <result property="cityName" column="city_name"/>
+        <result property="cityId" column="city_id"/>
+    </resultMap>
+
+    <select id="selectCity" parameterType="int" resultType="City">
+        SELECT *
+        FROM cities
+        WHERE city_id=#{id}
+    </select>
+
+    <!--#### PLANE ###-->
+    <!--##############-->
+
+    <resultMap id="PlaneMap" type="Plane">
+        <id property="planeId" column="plane_id"/>
+        <result property="year" column="year"/>
+        <result property="modelId" column="model_id"/>
+
+        <association property="manufacturer" resultMap="PlaneManufacturerMap"/>
+    </resultMap>
+
+    <select id="selectPlane" parameterType="int" resultType="Plane">
+        SELECT *
+        FROM planes
+        WHERE plane_id=#{id}
+    </select>
+
+    <!--#### PLANE MANUFACTURER ###-->
+    <!--###########################-->
+    <resultMap id="PlaneManufacturerMap" type="PlaneManufacturer">
+        <id property="id" column="id"/>
+        <result property="manufacturerName" column="manufacturer_name"/>
+        <result property="manufacturerId" column="manufacturer_id"/>
+    </resultMap>
+
+
+    <select id="selectPlaneManufacturer" parameterType="int" resultType="PlaneManufacturer">
+        SELECT *
+        FROM plane_manufacturers as pm
+        WHERE manufacturer_id=#{id}
+    </select>
+
+
+    <select id="getFlightById" parameterType="int" resultMap="FlightMap">
+        SELECT *,
+        a2.airport_id AS a2_airport_id,
+        a2.airport_name AS a2_airport_name,
+        a2.IATA_code AS a2_IATA_code,
+        a1.airport_id AS a1_airport_id,
+        a1.airport_name AS a1_airport_name,
+        a1.IATA_code AS a1_IATA_code
         FROM flights
         JOIN planes ON planes.plane_id = flights.planeId
         JOIN plane_models ON planes.modelId = plane_models.model_id
         JOIN plane_manufacturers ON plane_models.manufacturer = plane_manufacturers.manufacturer_id
-        <!--
+        LEFT JOIN airlines ON airlines.airline_id = flights.airlineId
+        JOIN pilots ON flights.pilotId = pilots.id_pilot
+        JOIN pilot_licenses ON pilots.licenseId = pilot_licenses.license_id
         LEFT JOIN airport_flights af1 ON flights.flight_id = af1.flightId
         LEFT JOIN airports a1 ON af1.departure_airportId = a1.airport_id
+        JOIN cities c1 ON a1.cityId = c1.city_id
         LEFT JOIN airport_flights af2 ON flights.flight_id = af2.flightId
         LEFT JOIN airports a2 ON af2.arrival_airportId = a2.airport_id
-        LEFT JOIN airlines ON airlines.airline_id = flights.airlineId
-        -->
+        JOIN cities c2 ON a2.cityId = c2.city_id
+        JOIN tickets ON tickets.flightId = flights.flight_id
+        JOIN passengers ON tickets.passengerId = passengers.passenger_id
         WHERE flight_id =#{id}
     </select>
 
 
     <select id="getAllFlights" resultMap="FlightMap">
-        SELECT *
+        SELECT *,
+        a2.airport_id AS a2_airport_id,
+        a2.airport_name AS a2_airport_name,
+        a2.IATA_code AS a2_IATA_code,
+        a1.airport_id AS a1_airport_id,
+        a1.airport_name AS a1_airport_name,
+        a1.IATA_code AS a1_IATA_code
         FROM flights
+        JOIN planes ON planes.plane_id = flights.planeId
+        JOIN plane_models ON planes.modelId = plane_models.model_id
+        JOIN plane_manufacturers ON plane_models.manufacturer = plane_manufacturers.manufacturer_id
+        LEFT JOIN airlines ON airlines.airline_id = flights.airlineId
+        JOIN pilots ON flights.pilotId = pilots.id_pilot
+        JOIN pilot_licenses ON pilots.licenseId = pilot_licenses.license_id
         LEFT JOIN airport_flights af1 ON flights.flight_id = af1.flightId
         LEFT JOIN airports a1 ON af1.departure_airportId = a1.airport_id
         LEFT JOIN airport_flights af2 ON flights.flight_id = af2.flightId
         LEFT JOIN airports a2 ON af2.arrival_airportId = a2.airport_id
+        JOIN cities c2 ON a2.cityId = c2.city_id
+        JOIN tickets ON tickets.flightId = flights.flight_id
+        JOIN passengers ON tickets.passengerId = passengers.passenger_id
     </select>
     <insert id="insertFlight" parameterType="Flight">
         INSERT INTO flights

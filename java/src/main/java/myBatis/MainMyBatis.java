@@ -1,8 +1,10 @@
 package myBatis;
 
+import jdbc.DAO.IFlightDAO;
 import jdbc.DAO.IPlaneDAO;
 import jdbc.DAO.IPlaneManufacturerDAO;
 import jdbc.DAO.IPlaneModelDAO;
+import jdbc.model.Flight;
 import jdbc.model.Plane;
 import jdbc.model.PlaneManufacturer;
 import jdbc.model.PlaneModel;
@@ -38,7 +40,7 @@ public class MainMyBatis {
             testPlane.setModelId(3);
             testPlane.setYear((int) (Math.random() * (100) + 4000));
 
-            planeMapper.insertPlane(testPlane);
+            // planeMapper.insertPlane(testPlane);
 
             testPlane.setYear(2025);
 
@@ -67,16 +69,17 @@ public class MainMyBatis {
             Pilot newPilot = new Pilot(77, "Test Pilot", 77, new PilotLicenseDAO().getById(1));
 
             pilotMapper.insertPilot(newPilot);
-
+*/
             IFlightDAO flightMapper = session.getMapper(IFlightDAO.class);
             Flight testFlight = flightMapper.getFlightById(2);
             LOGGER.info(testFlight);
+
             ArrayList<Flight> testFlights = flightMapper.getAllFlights();
 
             for (Flight flight : testFlights) {
                 LOGGER.info(flight);
             }
-*/
+
             session.commit();
 
             session.close();
