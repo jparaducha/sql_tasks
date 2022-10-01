@@ -11,4 +11,6 @@ public interface IFactory {
     Plane getPlane();
 
     Passenger getPassenger();
+
+    Object getInstance(String modelToGet);
 }
