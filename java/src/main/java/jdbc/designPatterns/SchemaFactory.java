@@ -1,4 +1,4 @@
-package jdbc.factory;
+package jdbc.designPatterns;
 
 import jdbc.model.City;
 import jdbc.model.Passenger;

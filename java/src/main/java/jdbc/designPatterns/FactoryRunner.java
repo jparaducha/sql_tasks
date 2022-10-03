@@ -1,14 +1,17 @@
-package jdbc.factory;
+package jdbc.designPatterns;
 
 import jdbc.model.Passenger;
 import jdbc.model.Plane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.SQLException;
+import java.text.ParseException;
+
 public class FactoryRunner {
     private static final Logger LOGGER = LogManager.getLogger(FactoryRunner.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ParseException {
 
         IFactory factory = new SchemaFactory();
 
@@ -19,5 +22,9 @@ public class FactoryRunner {
         LOGGER.info(testPassenger);
 
         LOGGER.info(testPlane);
+
+        ProxyFlight testProxy = new ProxyFlight(1);
+
+        LOGGER.info(testProxy);
     }
 }

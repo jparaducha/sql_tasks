@@ -1,4 +1,4 @@
-package jdbc.proxy;
+package jdbc.designPatterns;
 
 import jdbc.DAO.mysql.FlightDAO;
 import jdbc.model.Flight;
