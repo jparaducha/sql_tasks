@@ -5,15 +5,16 @@ import jdbc.model.Plane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
 public class FactoryRunner {
     private static final Logger LOGGER = LogManager.getLogger(FactoryRunner.class);
 
-    public static void main(String[] args) throws SQLException, ParseException {
+    public static void main(String[] args) throws SQLException, ParseException, IOException {
 
-        IFactory factory = new SchemaFactory();
+        IFactory factory = new SchemaFactory("dao");
 
         Passenger testPassenger = factory.getPassenger();
 

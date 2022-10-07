@@ -1,9 +1,9 @@
 package jdbc.DAO.mysql;
 
-import jdbc.model.City;
-import jdbc.model.Country;
 import jdbc.DAO.ConnectionPool;
 import jdbc.DAO.IBaseDAO;
+import jdbc.model.City;
+import jdbc.model.Country;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,6 +22,8 @@ public class CityDAO implements IBaseDAO<City> {
     private final String UPDATE_CITY = "UPDATE cities SET city_name =  ?, countryId = ? WHERE city_id = ?";
     private final String DELETE_ALL = "DELETE FROM cities";
     private final Logger LOGGER = LogManager.getLogger(CityDAO.class);
+
+    private final String GET_BY_COUNTRY_ID = "SELECT * FROM cities RIGHT JOIN countries ON cities.countryId = countries.country_id WHERE countries.country_id = ?";
 
     public CityDAO() throws SQLException {
     }
@@ -172,6 +174,40 @@ public class CityDAO implements IBaseDAO<City> {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                LOGGER.error(e);
+            }
+        }
+    }
+
+    public ArrayList<City> getByCountryId(int id) {
+
+        PreparedStatement preparedStatement = null;
+        Connection connection = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+
+            preparedStatement = connection.prepareStatement(GET_BY_COUNTRY_ID);
+            preparedStatement.setInt(1, id);
+            ResultSet result = preparedStatement.executeQuery();
+
+            ArrayList<City> cities = new ArrayList<>();
+
+            while (result.next()) {
+                Country country = new Country(result.getString("country_name"), result.getInt("countryId"));
+                City city = new City(result.getInt("city_id"), result.getString("city_name"), country);
+
+                cities.add(city);
+            }
+
+            return cities;
+        } catch (SQLException e) {
+            LOGGER.error(e);
+            return null;
         } finally {
             ConnectionPool.getInstance().releaseConnection(connection);
             try {

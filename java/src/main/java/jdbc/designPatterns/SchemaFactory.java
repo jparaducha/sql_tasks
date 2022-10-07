@@ -1,10 +1,32 @@
 package jdbc.designPatterns;
 
+import jdbc.DAO.ICountryDAO;
+import jdbc.DAO.mySQLservice.CountryService;
 import jdbc.model.City;
+import jdbc.model.Country;
 import jdbc.model.Passenger;
 import jdbc.model.Plane;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.SQLException;
 
 public class SchemaFactory implements IFactory {
+
+    String type;
+
+    String resource = "mybatis-config.xml";
+    InputStream inputStream = Resources.getResourceAsStream(resource);
+    SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+    SqlSession session = sqlSessionFactory.openSession();
+
+    public SchemaFactory(String type) throws IOException {
+        this.type = type;
+    }
 
     public City getCity() {
         return new City("Random city name from factory");
@@ -29,5 +51,19 @@ public class SchemaFactory implements IFactory {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public Country getCountry(int id) throws SQLException {
+        Country country;
+        if (type == "dao") {
+            country = new CountryService().getById(id);
+        } else {
+
+            ICountryDAO countryMapper = session.getMapper(ICountryDAO.class);
+            country = countryMapper.getCountryById(id);
+        }
+
+        return country;
     }
 }
