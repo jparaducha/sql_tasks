@@ -2,6 +2,7 @@ package jdbc.designPatterns;
 
 import jdbc.DAO.ICountryDAO;
 import jdbc.DAO.mySQLservice.CountryService;
+import jdbc.DAO.mySQLservice.IBaseService;
 import jdbc.model.City;
 import jdbc.model.Country;
 import jdbc.model.Passenger;
@@ -13,6 +14,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
 public class SchemaFactory implements IFactory {
@@ -26,6 +28,13 @@ public class SchemaFactory implements IFactory {
 
     public SchemaFactory(String type) throws IOException {
         this.type = type;
+    }
+
+    public static IBaseService create(String serviceClass) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        Class.forName(serviceClass).getDeclaredConstructor();
+
+        Object o = Class.forName(serviceClass).getDeclaredConstructor().newInstance();
+        return (IBaseService) o;
     }
 
     public City getCity() {
