@@ -20,6 +20,7 @@ public class PilotLicenseDAO implements IBaseDAO<PilotLicense> {
     private final String DELETE_BY_ID = "DELETE FROM pilot_licenses WHERE license_id = ?";
     private final String UPDATE_PILOTLICENSE = "UPDATE pilot_licenses SET issued_on =  ?, expires = ?, pilotId = ? WHERE license_id = ?";
     private final String DELETE_ALL = "DELETE FROM pilot_licenses";
+    private final String GET_BY_PILOT_ID = "SELECT * FROM pilot_licenses JOIN pilots ON pilot_licenses.pilotId = pilots.id_pilot WHERE pilots.id_pilot = ?";
     private final Logger LOGGER = LogManager.getLogger(PilotLicenseDAO.class);
     PreparedStatement preparedStatement;
 
@@ -173,6 +174,36 @@ public class PilotLicenseDAO implements IBaseDAO<PilotLicense> {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                LOGGER.error(e);
+            }
+        }
+    }
+
+    public PilotLicense getByPilotId(int id) {
+
+        PreparedStatement preparedStatement = null;
+        Connection connection = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            preparedStatement = connection.prepareStatement(GET_BY_PILOT_ID);
+            preparedStatement.setInt(1, id);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            PilotLicense license;
+
+            result.next();
+            license = new PilotLicense(result.getInt("license_id"), result.getString("issued_on"), result.getString("expires"), result.getInt("pilotId"));
+
+            return license;
+        } catch (SQLException e) {
+            LOGGER.error(e);
+            return null;
         } finally {
             ConnectionPool.getInstance().releaseConnection(connection);
             try {

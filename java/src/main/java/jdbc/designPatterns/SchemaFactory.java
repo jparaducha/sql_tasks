@@ -1,8 +1,10 @@
 package jdbc.designPatterns;
 
 import jdbc.DAO.ICountryDAO;
+import jdbc.DAO.IPlaneDAO;
 import jdbc.DAO.mySQLservice.CountryService;
 import jdbc.DAO.mySQLservice.IBaseService;
+import jdbc.DAO.mySQLservice.PlaneService;
 import jdbc.model.City;
 import jdbc.model.Country;
 import jdbc.model.Passenger;
@@ -37,12 +39,27 @@ public class SchemaFactory implements IFactory {
         return (IBaseService) o;
     }
 
+    public static Object createObject(String serviceClass) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        Class.forName(serviceClass).getDeclaredConstructor();
+
+        Object o = Class.forName(serviceClass).getDeclaredConstructor().newInstance();
+        return o;
+    }
+
     public City getCity() {
         return new City("Random city name from factory");
     }
 
-    public Plane getPlane() {
-        return new Plane(999, 999, "Random plane from factory", null);
+    public Plane getPlane() throws SQLException {
+        Plane plane;
+        if (type == "dao") {
+            plane = new PlaneService().getById(1);
+        } else {
+
+            IPlaneDAO planeMapper = session.getMapper(IPlaneDAO.class);
+            plane = planeMapper.getPlaneById(1);
+        }
+        return plane;
     }
 
     public Passenger getPassenger() {

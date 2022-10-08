@@ -1,6 +1,7 @@
 package jdbc.designPatterns;
 
 import jdbc.DAO.mySQLservice.IBaseService;
+import jdbc.model.Airline;
 import jdbc.model.Country;
 import jdbc.model.Passenger;
 import jdbc.model.Plane;
@@ -19,9 +20,15 @@ public class FactoryRunner {
 
         IFactory factory = new SchemaFactory("dao");
 
-        IBaseService<Country> testCreate = SchemaFactory.create("jdbc.DAO.mySQLservice.CountryService");
+        Airline testCreate = (Airline) SchemaFactory.createObject("jdbc.model.Airline");
+        IBaseService<Country> testCreate0 = SchemaFactory.create("jdbc.DAO.mySQLservice.PilotService");
 
         LOGGER.info(testCreate);
+        LOGGER.info(testCreate0);
+
+        Country asd = factory.getCountry(11);
+
+        LOGGER.info(asd);
 
         Passenger testPassenger = factory.getPassenger();
 

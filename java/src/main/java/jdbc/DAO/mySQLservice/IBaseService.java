@@ -13,5 +13,5 @@ public interface IBaseService<T> {
 
     void update(T t) throws SQLException;
 
-    List<?> getAll() throws SQLException;
+    List<T> getAll() throws SQLException;
 }

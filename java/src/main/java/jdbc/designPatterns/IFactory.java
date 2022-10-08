@@ -11,7 +11,7 @@ public interface IFactory {
 
     City getCity();
 
-    Plane getPlane();
+    Plane getPlane() throws SQLException;
 
     Passenger getPassenger();
 

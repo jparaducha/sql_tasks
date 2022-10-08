@@ -21,6 +21,7 @@ public class PlaneModelDAO implements IBaseDAO<PlaneModel> {
     private final String DELETE_BY_ID = "DELETE FROM plane_manufacturers WHERE model_id = ?";
     private final String UPDATE_MODEL = "UPDATE plane_manufacturers SET model_name =  ? , manufacturer = ? WHERE model_id = ?";
     private final String DELETE_ALL = "DELETE FROM plane_manufacturers";
+    private final String GET_BY_PLANE_ID = "SELECT * FROM plane_models JOIN planes ON planes.modelId = plane_models.model_id WHERE plane.plane_id = ?";
     private final Logger LOGGER = LogManager.getLogger(PlaneModelDAO.class);
 
     public PlaneModelDAO() throws SQLException {
@@ -171,6 +172,35 @@ public class PlaneModelDAO implements IBaseDAO<PlaneModel> {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                LOGGER.error(e);
+            }
+        }
+    }
+
+    public PlaneModel getByPlaneId(int id) {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            preparedStatement = connection.prepareStatement(GET_BY_PLANE_ID);
+            preparedStatement.setInt(1, id);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            result.next();
+            PlaneManufacturer manufacturer = new PlaneManufacturer(result.getInt("manufacturer_id"), result.getString("manufacturer_name"));
+            PlaneModel model = new PlaneModel(result.getInt("model_id"), result.getString("model_name"), manufacturer);
+
+            return model;
+        } catch (SQLException e) {
+            LOGGER.error(e);
+            return null;
         } finally {
             ConnectionPool.getInstance().releaseConnection(connection);
             try {
